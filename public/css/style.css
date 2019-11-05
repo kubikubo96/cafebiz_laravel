@@ -1,0 +1,125 @@
+/*start : header*/
+.wapper{
+    background-color: #F4F4F4;
+}
+.container{
+    padding: 0;
+}
+.header .container{
+    background-color: #ffffff;
+}
+
+.abcd a:hover{
+    text-decoration: none;
+    color:white;
+}
+
+/*end :header*/
+
+ /*start : content*/
+
+.content .container{
+    background-color: #ffffff;
+    margin-top: 30px;
+}
+
+.content .container .c1{
+    padding:0px 20px 0px 20px;
+    border-right: 1px solid #e6e6e6;
+}
+.content .container .c1 .c2{
+    margin: 30px 5px 20px 5px;
+}
+
+.content .container .c3{
+    background-color: #ECF8FF;
+    padding-left: 0;margin-left: 15px;
+}
+
+.content .container .c4{
+    margin-right: -15px;padding-left: 0;
+}
+
+.content .container .c5{
+    padding: 20px;
+    font-size: 16px;
+    margin-left: 0;
+}
+.content .container .c6{
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-bottom:2px solid #A40E0E ;
+}
+.content .container .c6 h6{
+    margin-top: 10px;
+}
+
+.content .container .c7{
+     margin-top: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px dotted #c3c3c3;
+ }
+
+.content .container .c8{
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px dotted #c3c3c3;
+}
+.content .container .cc .c9{
+    margin-top: 30px;
+}
+
+ /*end : content*/
+
+ /*start :footer*/
+.footer{
+    background-color: #f4f4f4;
+}
+
+.footer .row{
+    margin: 0;
+}
+
+.footer .container{
+    background-color: #f4f4f4;
+}
+.footer .container h6{
+    margin-top: 30px;
+}
+.footer .container p{
+    margin-bottom: 2px;
+    font-size: 14px;
+    font-family:sans-serif;
+}
+
+.footer .container .c10{
+    padding: 0 20px 20px 20px;
+}
+
+ /*end :footer*/
+
+ /*min*/
+ @media only screen and (min-width:0) and (max-width: 767px) {
+     .content .container .row{
+         margin: 0;
+     }
+     .content .container .c3{
+         margin-left: 0;
+     }
+     .content .container .c4 img{
+         width: 100%;
+     }
+ }
+ /*col-s... */
+ @media only screen and (min-width:768px) and (max-width: 9999px) {
+    .content .container .c61{
+        padding-right: 30px;
+        padding-left: 0px;
+    }
+    .content .container .c62{
+        padding-right: 30px;
+    }
+    .content .container .cc{
+    padding-left: 0;
+}
+ }
