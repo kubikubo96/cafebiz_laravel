@@ -14,10 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('everywhere',function(){
-    return view('admin.posts.page');
-});
-
 //Route đăng nhập
 Route::get('admin/login','Pages\userController@getLoginAdmin');
 Route::post('admin/login','Pages\userController@postLoginAdmin');
@@ -34,14 +30,28 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 
     Route::group(['prefix'=>'posts'],function(){
 
-        Route::get('/','Pages\postController@getAll');
+//        Route::get('/','Pages\postController@getAll');
+        //repo
+        Route::get('/','PostController@index');
 
-        Route::post('add','Pages\postController@postAdd')->name('post.add');
+//        Route::post('add','Pages\postController@postAdd')->name('post.add');
+        //repo
+        Route::post('add','PostController@postAdd')->name('post.add');
 
-        Route::post('edit-modal','Pages\postController@openEditModal')->name('admin.posts.open_edit_modal');
-        Route::post('edit','Pages\postController@postEdit')->name('admin.posts.edit');
+//        Route::post('edit-modal','Pages\postController@openEditModal')->name('admin.posts.open_edit_modal');
 
-        Route::post('delete','Pages\postController@postDelete')->name('admin.posts.delete');
+        //repo
+        Route::post('edit-modal','PostController@openEditModal')->name('admin.posts.open_edit_modal');
+
+
+//        Route::post('edit','Pages\postController@postEdit')->name('admin.posts.edit');
+
+        Route::post('edit','PostController@postEdit')->name('admin.posts.edit');
+
+//        Route::post('delete','Pages\postController@postDelete')->name('admin.posts.delete');
+
+        //repo
+        Route::post('delete','PostController@postDelete')->name('admin.posts.delete');
 
         Route::get('result',function (){
             return view('admin.posts.result');
