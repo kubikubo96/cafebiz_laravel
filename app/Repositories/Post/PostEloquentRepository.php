@@ -4,6 +4,7 @@ namespace App\Repositories\post;
 
 use App\Repositories\EloquentRepository;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PostEloquentRepository extends EloquentRepository implements PostRepositoryInterface
 {
@@ -13,16 +14,16 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
      */
     public function getModel()
     {
-        return \App\Models\postModel::class;
+        return \App\Post::class;
     }
     //xử lý postAdd bên PostController
     public function create_post($attributes)
     {
         $data = array();
+        $data['user_id'] = $attributes->user_id;
         $data['title'] = $attributes->title;
         $data['title_link'] = $attributes->title_link;
         $data['content_post'] = $attributes->content_post;
-
         //hasFile : kiểm tra xem người dùng có truyền hình k. nếu k có thì để rỗng
         if ($attributes->hasFile('image')) {
             $file = $attributes->file('image');

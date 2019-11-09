@@ -14,70 +14,107 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route đăng nhập
-Route::get('admin/login','Pages\userController@getLoginAdmin');
-Route::post('admin/login','Pages\userController@postLoginAdmin');
-Route::get('admin/logout','Pages\userController@getLogoutAdmin');
+//Route login,logout Admin
+
+Route::get('admin/login', 'UserController@getLoginAdmin');
+Route::post('admin/login', 'UserController@postLoginAdmin');
+Route::get('admin/logout', 'UserController@getLogoutAdmin');
 
 /*
- * Nhóm Admin
+ * Nhóm Route Admin
  * */
-Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
-    Route::get('/',function(){
+    Route::get('/', function () {
         return view('admin.layouts.index');
     });
 
-    Route::group(['prefix'=>'posts'],function(){
+    /*
+     * Nhóm Route posts
+     * */
+    Route::group(['prefix' => 'posts'], function () {
 
-//        Route::get('/','Pages\postController@getAll');
-        //repo
-        Route::get('/','PostController@index');
+        Route::get('/', 'PostController@index');
+        Route::post('add', 'PostController@postAdd')->name('post.add');
 
-//        Route::post('add','Pages\postController@postAdd')->name('post.add');
-        //repo
-        Route::post('add','PostController@postAdd')->name('post.add');
+        Route::post('edit-modal', 'PostController@openEditModal')
+            ->name('admin.posts.open_edit_modal');
 
-//        Route::post('edit-modal','Pages\postController@openEditModal')->name('admin.posts.open_edit_modal');
+        Route::post('edit', 'PostController@postEdit')->name('admin.posts.edit');
 
-        //repo
-        Route::post('edit-modal','PostController@openEditModal')->name('admin.posts.open_edit_modal');
+        Route::post('delete', 'PostController@postDelete')->name('admin.posts.delete');
 
-
-//        Route::post('edit','Pages\postController@postEdit')->name('admin.posts.edit');
-
-        Route::post('edit','PostController@postEdit')->name('admin.posts.edit');
-
-//        Route::post('delete','Pages\postController@postDelete')->name('admin.posts.delete');
-
-        //repo
-        Route::post('delete','PostController@postDelete')->name('admin.posts.delete');
-
-        Route::get('result',function (){
+        Route::get('result', function () {
             return view('admin.posts.result');
         });
-        Route::get('content_post','Pages\postController@getContentPost');
+        Route::get('content_post', 'Post@getContentPost');
 
     });
 
-    Route::group(['prefix'=>'users'],function(){
+    /*
+     *Nhóm route Users
+     * */
 
-        Route::get('/','Pages\userController@getAll');
+    Route::group(['prefix' => 'users',], function () {
 
-        Route::get('add','Pages\userController@getAdd');
-        Route::post('add','Pages\userController@postAdd')->name('user.add');
+        Route::get('/', 'UserController@getAll');
 
-        Route::get('edit/{id}','Pages\userController@getEdit');
-        Route::post('edit/{id}','Pages\userController@postEdit');
+        Route::post('add', 'UserController@postAdd')->name('user.add');
 
-        Route::get('delete/{id}','Pages\userController@getDelete');
+        Route::post('edit_modal_user', 'UserController@openEditModalUser')->name('admin.users.edit_modal_user');
 
-        Route::post('ajax_index','Pages\userController@indexAjax');
+        Route::post('edit', 'UserController@postEdit')->name('admin.users.edit');
+
+        Route::post('delete', 'UserController@postDelete')->name('admin.users.delete');
+
+        Route::post('ajax_index', 'UserController@indexAjax');
 
     });
 
-    Route::get('comment','Pages\commentController@getComment');
-    Route::get('comment/delete/{id}','Pages\commentController@getDelete');
+    /*
+     * Group permissions
+     * */
+    Route::group(['prefix'=>'permissions'],function(){
+
+        Route::get('/','PermissionController@getAll');
+
+        Route::post('add','PermissionController@postAdd')->name('admin.permissions.add');
+
+        Route::post('edit_modal_permission','PermissionController@openEditModalPermission')
+            ->name('admin.permissions.edit_modal_permission');
+
+        Route::post('edit','PermissionController@postEdit')->name('admin.permissions.edit');
+
+        Route::post('delete','PermissionController@postDelete')->name('admin.permissions.delete');
+
+    });
+
+    /*
+     * Group permissions
+     * */
+
+    Route::group(['prefix'=>'roles'],function(){
+
+        Route::get('/','RoleController@getAll');
+
+        Route::post('add','RoleController@postAdd')->name('admin.roles.add');
+
+        Route::post('edit_modal_role','RoleController@openEditModalRole')
+            ->name('admin.roles.edit_modal_role');
+
+        Route::post('edit','RoleController@postEdit')->name('admin.roles.edit');
+
+        Route::post('delete','RoleController@postDelete')->name('admin.roles.delete');
+
+
+    });
+
+    /*
+     * Route comment
+     * */
+
+    Route::get('comment', 'Pages\CommentController@getComment');
+    Route::get('comment/delete/{id}', 'Pages\CommentController@getDelete');
 
 });
 
@@ -85,19 +122,22 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
  * Route homepage
  * */
 
-Route::get('homepage','Pages\pageController@homepage');
+Route::get('homepage', 'Pages\PageController@homepage');
 
-Route::get('login','Pages\pageController@getLogin');
-Route::post('login','Pages\pageController@postLogin');
+Route::get('login', 'Pages\PageController@getLogin');
+Route::post('login', 'Pages\PageController@postLogin');
 
-Route::get('logout','Pages\pageController@getLogout');
+Route::get('logout', 'Pages\PageController@getLogout');
 
-Route::get('register','Pages\pageController@getRegister');
-Route::post('register','Pages\pageController@postRegister');
+Route::get('register', 'Pages\PageController@getRegister');
+Route::post('register', 'Pages\PageController@postRegister');
 
-Route::get('user_personal/{id}','Pages\pageController@getUserPersonal');
-Route::post('user_personal/{id}','Pages\pageController@postUserPersonal');
+Route::get('forgot_password', 'Pages\PageController@getForgotPassword');
+Route::post('forgot_password', ['uses' => 'Pages\PageController@postForgotPassword', 'as' => 'front.fb']);
 
-Route::get('detail/{id}/{title_link}.html','Pages\pageController@getDetail');
+Route::get('user_personal/{id}', 'Pages\PageController@getUserPersonal');
+Route::post('user_personal/{id}', 'Pages\PageController@postUserPersonal');
 
-Route::post('comments/{id}','Pages\commentController@postComment');
+Route::get('detail/{id}/{title_link}.html', 'Pages\PageController@getDetail');
+
+Route::post('comments/{id}', 'Pages\CommentController@postComment');

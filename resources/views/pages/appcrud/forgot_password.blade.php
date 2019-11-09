@@ -8,7 +8,7 @@
                 <div class="col-md-9 c1" style="padding: 0 200px;">
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading" style="margin-top: 30px;margin-bottom: 30px; text-align: center;">
-                            <h3 class="panel-title">Please Login</h3>
+                            <h3 class="panel-title">Enter Your Email</h3>
                         </div>
                         <div class="panel-body">
                             @if(count($errors) > 0)
@@ -27,22 +27,18 @@
                                 @csrf
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="E-mail" name="email" type="email"
+                                        <input class="form-control" placeholder="Name" name="name"/>
+                                        <input style="margin-top: 10px;" class="form-control" placeholder="E-mail" name="email" type="email"
                                                autofocus>
+                                        <input style="margin-top: 10px;" class="form-control" name="comment" placeholder="Phản hồi của bạn . . .">
                                     </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Password" name="password"
-                                               type="password" value="">
-                                    </div>
-                                    <button type="submit" class="btn btn-lg btn-dark btn-block">Login</button>
+                                    <button type="submit" class="btn btn-lg btn-dark btn-block">Send Email</button>
                                 </fieldset>
                             </form>
                         </div>
                         <div style="text-align: center;">
                             <a style="color: #000000;" class="d-block small mt-3" href="register">Register
                                 an Account</a>
-                            <a style="color: #000000;" class="d-block small" href="forgot_password">Forgot
-                                Password?</a>
                         </div>
                     </div>
                 </div>

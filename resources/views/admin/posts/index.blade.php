@@ -1,6 +1,18 @@
+{{--@can('edit-profile')--}}
+{{--<h1>BẠN CÓ THỂ SỬA</h1>--}}
+{{--@endcan--}}
+
+{{--
+    cannot : ngược lại với can
+    - khi mà bạn không có quyền này, thì nó là true, còn có quền edit-profile thì sẽ fale
+--}}
+{{--@cannot('edit-profile')--}}
+{{--<h1>Bạn không thể sữa</h1>--}}
+{{--@endcannot--}}
 @extends('admin.layouts.master')
 
 @section('content')
+
     <!-- content-wapper -->
     <div id="content-wrapper">
         <div class="container-fluid">
@@ -25,6 +37,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
+                                <th>Poster</th>
                                 <th>Title</th>
                                 <th>Title_link</th>
                                 <th>Content_post</th>
@@ -34,6 +47,7 @@
                             </thead>
                             <tfoot>
                             <tr>
+                                <th>Poster</th>
                                 <th>Title</th>
                                 <th>Title_link</th>
                                 <th>Content_post</th>
@@ -86,9 +100,10 @@
                     CKEDITOR.instances[instance].updateElement();
                 }
                 /*
-                * sử dụng form data ms update được file
+                * sử dụng formdata ms update được file
                 * */
                 var formData = new FormData();
+                formData.append('user_id',$('#user_id').val());
                 formData.append('title', $('#title').val());
                 formData.append('title_link', $('#title_link').val());
                 formData.append('content_post', $('#content_post').val());
@@ -102,12 +117,18 @@
                     processData: false,
                     data: formData,
                     success: function (result) {
-                        $("#dataTable").append(result);
-                        alert("Ajax Add thành công !!!");
+                        if(result.status){
+                            $('.error_post').removeClass('hidden');
+                            $('.error_post').text(result.message);
+                        }else{
+                            $("#dataTable").append(result);
+                            $('.error_post').addClass('hidden');
+                            alert("Ajax Add thành công !!!");
+                            //ẩn modal khi thêm thành công
+                            $('.add_post').modal('hide');
+                        }
                     }
                 });
-                //ẩn modal khi thêm thành công
-                $('.add_post').modal('hide');
             });
 
         });
@@ -122,7 +143,7 @@
                 type : "POST",
                 data : {id:id},
                 success : function (){
-                    $("#user_id_" + id).remove();
+                    $("#post_id_" + id).remove();
                     alert("Bạn đã xóa thành công !");
                 }
             });
@@ -147,12 +168,11 @@
                 CKEDITOR.instances[instance].updateElement();
             }
             /*
-            * sử dụng form data ms update được file
+            * sử dụng formdata ms update được file
             * */
-            var form = $("#editPost");
             var formData = new FormData();
             var id, title, title_link, content_post, image;
-            id = $(form).find('input[name="id"]').val();
+            id = $("#editPost").find('input[name="id"]').val();
             title = $("#editPost").find('input[name="title"]').val();
             title_link = $("#editPost").find('input[name="title_link"]').val();
             content_post = $("#editPost").find('textarea[name="content_post"]').val();
@@ -171,9 +191,14 @@
                 processData: false,
                 data: formData,
                 success : function (result) {
-                    $('#user_id_'+ id).replaceWith(result);
-                    alert("Edit thành công !!!");
-                    $('#editPostModal').modal('hide');
+                    if(result.status){
+                        $('.error_post').removeClass('hidden');
+                        $('.error_post').text(result.message);
+                    }else{
+                        $('#post_id_'+ id).replaceWith(result);
+                        alert("Edit thành công !!!");
+                        $('#editPostModal').modal('hide');
+                    }
                 }
             });
         }

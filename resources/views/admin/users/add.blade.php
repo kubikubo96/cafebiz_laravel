@@ -41,7 +41,7 @@
                                        placeholder="Nhập lại password"/>
                             </div>
                             <div class="form-group">
-                                <label>Quyền người dùng</label>
+                                <div><label style="font-weight: bold;">Quyền người dùng</label></div>
                                 <label class="radio-inline">
                                     <input name="admin" class="admin" value="0" checked type="radio">Thường
                                 </label>
@@ -49,6 +49,24 @@
                                     <input name="admin" class="admin" value="1" type="radio">Admin
                                 </label>
                             </div>
+                            {{--<div class="form-group" style="float: right;">--}}
+                                {{--<div><label style="font-weight: bold;">Roles</label></div>--}}
+                                {{--<label class="radio-inline">--}}
+                                    {{--<input name="role_id" class="role_id" value="2" checked type="radio">Author--}}
+                                {{--</label>--}}
+                                {{--<label class="radio-inline">--}}
+                                    {{--<input name="role_id" class="role_id" value="1" type="radio">UserMagent--}}
+                                {{--</label>--}}
+                            {{--</div>--}}
+                            <div class="form-group">
+                                <label style="font-weight: bold;">Roles</label>
+                                <select class="form-control" name="roles" id="roles">
+                                    @foreach($rolesForAddUser as $role)
+                                        <option name="role_id" value="{{$role->id}}">{{$role->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <div style="margin-top: 20px;">
                                 <p class="error_user text-danger hidden"></p>
                             </div>
@@ -60,43 +78,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="reset" id="add_user" onclick="load_add_user();" class="btn btn-primary">Save changes</button>
+                <button type="button" onclick="createUser();" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
-@section('script')
-    <script>
-        function load_add_user(){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var data = {
-                name: $('#name').val(),
-                email: $('#email').val(),
-                password: $('#password').val(),
-                confirm_password: $('#confirm_password').val(),
-                admin: $('.admin:checked').val()
-            }
-            $.ajax({
-                url: "admin/users/add",
-                type: "post",
-                dateType: "text",
-                data: data,
-                success: function (result) {
-                    if (result.status == 0) {
-                        $('.error_user').removeClass('hidden');
-                        $('.error_user').text(result.message);
-                    } else {
-                        $('.error_user').removeClass('hidden');
-                        $('.error_user').removeClass('text-danger');
-                        $('.error_user').addClass(' text-success');
-                        $('.error_user').text(result);
-                    }
-                }
-            });
-        }
-    </script>
-@endsection

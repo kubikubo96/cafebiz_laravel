@@ -1,4 +1,9 @@
-<tr id="user_id_{{ $pt->id }}">
+<tr id="post_id_{{ $pt->id }}">
+    <td>
+        <div>
+            {{$pt->user->name}}
+        </div>
+    </td>
     <td>
         <div id="title_edit">
             {{$pt->title}}
@@ -14,7 +19,7 @@
         </div>
     </td>
     <td>
-        <a href="javascript:;" onclick="openModalEdit({{$pt->id}})">Edit
+        <a href="javascript:void(0);" onclick="openModalEdit({{$pt->id}})">Edit
         </a>
     </td>
     <td>

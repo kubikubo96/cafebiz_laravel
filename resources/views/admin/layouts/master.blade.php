@@ -26,8 +26,6 @@
 
 <body id="page-top">
 
-@include('admin/users/add')
-
 @include('admin.layouts.header')
 
 <!-- start_wrapper -->
@@ -94,6 +92,19 @@
 
 @yield('script')
 
+{{--<script>--}}
+    {{--$(document).ready(function () {--}}
+        {{--$("#changePassword").change(function () {--}}
+            {{--if ($(this).is(":checked")) {--}}
+                {{--$(".password").removeAttr('disabled');--}}
+                {{--$(".confirm_password").removeAttr('disabled');--}}
+            {{--} else {--}}
+                {{--$(".password").attr('disabled', '');--}}
+                {{--$(".confirm_password").attr('disabled', '');--}}
+            {{--}--}}
+        {{--})--}}
+    {{--})--}}
+{{--</script>--}}
 </body>
 
 </html>

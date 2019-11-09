@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
-use App\Models\postModel;
-use App\Models\userModel;
+use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Mail;
 
 class pageController extends Controller
 {
@@ -16,9 +18,9 @@ class pageController extends Controller
     }
 
     function homepage(){
-        $post =postModel::paginate(3);
-        $hotnews = postModel::first();
-        $hotnews2 = postModel::all()->skip(1)->take(3);
+        $post =Post::paginate(3);
+        $hotnews = Post::first();
+        $hotnews2 = Post::all()->skip(1)->take(3);
         return view('pages.index',['post'=>$post,'hotnews'=>$hotnews,'hotnews2'=>$hotnews2]);
     }
 
@@ -70,7 +72,7 @@ class pageController extends Controller
                 'confirm_password.same' => 'Mật khẩu nhập lại chưa khớp'
             ]);
 
-        $user = new userModel;
+        $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
@@ -81,7 +83,7 @@ class pageController extends Controller
     }
 
     function getUserPersonal($id){
-        $user = userModel::find($id);
+        $user = User::find($id);
         return view('pages.appcrud.edit',['user'=>$user]);
     }
 
@@ -92,7 +94,7 @@ class pageController extends Controller
             ],[
                 'name.required' => 'Bạn chưa nhập tên người dùng',
             ]);
-        $user = userModel::find($id);
+        $user = User::find($id);
         $user->name = $request->name;
 
         if($request->changePassword == "on"){
@@ -113,8 +115,22 @@ class pageController extends Controller
     }
 
     function getDetail($id){
-        $post = postModel::find($id);
+        $post = Post::find($id);
         return view('pages.detail',['post'=>$post]);
+    }
+
+    public function getForgotPassword(){
+        return view('pages.appcrud.forgot_password');
+    }
+
+    public function postForgotPassword(Request $request){
+        $input = $request->all();
+        Mail::send('mailfb', array('name'=>$input["name"],'email'=>$input["email"], 'content'=>$input['comment']), function($message){
+            $message->to('plachym.it@gmail.com', 'Visitor')->subject('Visitor Feedback!');
+        });
+        Session::flash('flash_message', 'Send message successfully!');
+
+        return view('form');
     }
 
 

@@ -17,6 +17,7 @@
                         <form enctype="multipart/form-data" id="postForm" name="postForm" class="form-horizontal">
                             {{--meta name="csrf-token"...  => phải có mới dùng đc ajax--}}
                             <meta name="csrf-token" content="{{ csrf_token() }}">
+                            <input type="hidden" name="user_id" id="user_id" value="{{Auth::id()}}"/>
                             <div class="form-group">
                                 <label>Title</label>
                                 <input class="form-control" name="title" id="title"  placeholder="Nhập title"/>
@@ -34,6 +35,9 @@
                             <div class="form-group">
                                 <label>Image</label>
                                 <input type="file" name="image" id="image">
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <p class="error_user text-danger hidden"></p>
                             </div>
                         </form>
 
