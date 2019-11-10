@@ -27,10 +27,9 @@
                                 @csrf
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Name" name="name"/>
-                                        <input style="margin-top: 10px;" class="form-control" placeholder="E-mail" name="email" type="email"
+                                        <input style="margin-top: 10px;" class="form-control" placeholder="E-mail"
+                                               name="email" type="email"
                                                autofocus>
-                                        <input style="margin-top: 10px;" class="form-control" name="comment" placeholder="Phản hồi của bạn . . .">
                                     </div>
                                     <button type="submit" class="btn btn-lg btn-dark btn-block">Send Email</button>
                                 </fieldset>

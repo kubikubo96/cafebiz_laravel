@@ -1,49 +1,60 @@
 @extends('admin.layouts.master')
 
 @section('content')
-    <!-- content-wapper -->
-    <div id="content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
 
-        <div class="container-fluid">
+    @include('admin.layouts.theme_panel')
 
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="admin/users">Dashboard</a>
+    <!-- BEGIN PAGE BAR -->
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-circle"></i>
                 </li>
-                <li class="breadcrumb-item active">Users</li>
-            </ol>
-            <div class="col-md-12">
-                <!-- Large modal -->
-                <button type="button" style="color:white;background-color: #169ad6; border: none; margin-bottom: 10px;"
-                        data-toggle="modal" data-target="#add_user">Add user
-                </button>
-                @include('admin/users/add')
+                <li>
+                    <span>Users</span>
+                </li>
+            </ul>
+            <div class="page-toolbar">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn green btn-sm btn-outline"
+                            data-toggle="modal" data-target="#add_user"> Add User
+                    </button>
+                    @include('admin/users/add')
+                </div>
             </div>
-
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered dataTableUser" id="dataTable" width="100%" cellspacing="0">
+        </div>
+        <!-- END PAGE BAR -->
+        <!-- BEGIN PAGE TITLE-->
+        <h1 class="page-title"> Users Datatable
+            <small>data of users</small>
+        </h1>
+        <!-- END PAGE TITLE-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet box green">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-globe"></i>Users
+                        </div>
+                        <div class="tools"></div>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-striped table-bordered table-hover dataTableUser" id="sample_2">
                             <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Roles</th>
                                 <th>Email</th>
                                 <th>Created_at</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Created_at</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            </tfoot>
                             <tbody>
                             @foreach($user as $u)
                                 @include('admin.users.row_user',[
@@ -54,21 +65,11 @@
                         </table>
                     </div>
                 </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
             </div>
         </div>
-        <!-- /.container-fluid -->
-
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright © BossVn 2019</span>
-                </div>
-            </div>
-        </footer>
-
     </div>
-    <!-- end_content-wrapper -->
+    <!-- END CONTENT BODY -->
     {{--include modal users--}}
     @include('admin.users.modal')
 @endsection
@@ -88,7 +89,7 @@
                 name: $('#name').val(),
                 // role_id : $('.role_id').val(),
                 // role_id : $("#roles").find('option[name="role_id"]').val(),
-                role_id : $('#roles').find('option:selected').val(),
+                role_id: $('#roles').find('option:selected').val(),
                 email: $('#email').val(),
                 password: $('#password').val(),
                 confirm_password: $('#confirm_password').val(),
@@ -102,7 +103,7 @@
                 success: function (result) {
                     if (result.status) {
                         $('.error_user').removeClass('hidden');
-                        $('.error_user').text(result.message);
+                        $('.error_user').html(result.message);
                     } else {
                         $('.error_user').removeClass('hidden');
                         $(".dataTableUser").append(result);

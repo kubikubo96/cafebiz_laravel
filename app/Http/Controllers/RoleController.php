@@ -40,7 +40,6 @@ class RoleController extends Controller
     }
 
     public function postEdit(Request $request){
-        dd($request->all());
         if(empty($request->title)){
             return ['status' => 1, 'message' => 'roleTitle không được để trống !'];
         }

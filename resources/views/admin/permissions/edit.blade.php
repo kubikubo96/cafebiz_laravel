@@ -5,6 +5,10 @@
         <input type="hidden" name="id" value="{{$permission->id}}"/>
         @csrf
         <div class="form-group">
+            <label style="font-weight: bold;">Title</label>
+            <input class="form-control" name="title" value="{{$permission->title}}"/>
+        </div>
+        <div class="form-group">
             <label style="font-weight: bold;">Name</label>
             <input class="form-control" name="name" value="{{$permission->name}}"/>
         </div>

@@ -41,6 +41,22 @@ class PostController extends Controller
         return view('admin.posts.row_post', compact('pt'));
     }
 
+    public function postDelete(Request $request)
+    {
+        //quyền chỉ author ms được delete
+        $this->authorize('view-post');
+
+        $post = Post::find($request->id);
+
+        //quyền author chỉ được delete những bài viết của mình
+        $this->authorize($post,'postDelete');
+
+        $this->postRepository->delete($request->id);
+
+        return redirect('admin/posts');
+
+    }
+
     public function openEditModal(Request $request)
     {
 
@@ -69,21 +85,5 @@ class PostController extends Controller
         $pt = $this->postRepository->postEditRepo($request);
 
         return view('admin.posts.row_post', compact ('pt'));
-    }
-
-    public function postDelete(Request $request)
-    {
-        //quyền chỉ author ms được delete
-        $this->authorize('view-post');
-
-        $post = Post::find($request->id);
-
-        //quyền chỉ được delete những bài viết của mình
-        $this->authorize($post,'postDelete');
-
-        $this->postRepository->delete($request->id);
-
-        return redirect('admin/posts');
-
     }
 }

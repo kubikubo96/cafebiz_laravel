@@ -37,12 +37,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::get('/', 'PostController@index');
         Route::post('add', 'PostController@postAdd')->name('post.add');
 
+        Route::post('delete', 'PostController@postDelete')->name('admin.posts.delete');
+
         Route::post('edit-modal', 'PostController@openEditModal')
             ->name('admin.posts.open_edit_modal');
 
         Route::post('edit', 'PostController@postEdit')->name('admin.posts.edit');
-
-        Route::post('delete', 'PostController@postDelete')->name('admin.posts.delete');
 
         Route::get('result', function () {
             return view('admin.posts.result');
@@ -70,6 +70,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::post('ajax_index', 'UserController@indexAjax');
 
     });
+
+    /*
+     * Route comment
+     * */
+
+    Route::get('comments', 'CommentController@getComment');
+    Route::post('comments/delete', 'CommentController@postDelete')->name('admin.comments.delete');
 
     /*
      * Group permissions
@@ -106,16 +113,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
         Route::post('delete','RoleController@postDelete')->name('admin.roles.delete');
 
-
     });
-
-    /*
-     * Route comment
-     * */
-
-    Route::get('comment', 'Pages\CommentController@getComment');
-    Route::get('comment/delete/{id}', 'Pages\CommentController@getDelete');
-
 });
 
 /*
@@ -133,11 +131,11 @@ Route::get('register', 'Pages\PageController@getRegister');
 Route::post('register', 'Pages\PageController@postRegister');
 
 Route::get('forgot_password', 'Pages\PageController@getForgotPassword');
-Route::post('forgot_password', ['uses' => 'Pages\PageController@postForgotPassword', 'as' => 'front.fb']);
+Route::post('forgot_password','Pages\PageController@postForgotPassword');
 
 Route::get('user_personal/{id}', 'Pages\PageController@getUserPersonal');
 Route::post('user_personal/{id}', 'Pages\PageController@postUserPersonal');
 
 Route::get('detail/{id}/{title_link}.html', 'Pages\PageController@getDetail');
 
-Route::post('comments/{id}', 'Pages\CommentController@postComment');
+Route::post('comments/{id}', 'CommentController@postComment');

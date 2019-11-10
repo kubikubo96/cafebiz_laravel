@@ -43,7 +43,7 @@
                         <a href="register" style="color:white; margin-right: 10px;font-size: 12px;font-weight: bold;text-decoration: none;">ĐĂNG KÝ</a>
                     @else
                         <i style="color:white;" class="fa fa-user" aria-hidden="true"></i>
-                        <a href="user_personal/{{Auth::id()}}" style="text-decoration: none;color:white; margin-right: 10px;font-size: 12px;font-weight: bold;">NGUYỄN TẤT TIẾN</a>
+                        <a href="user_personal/{{Auth::id()}}" style="text-decoration: none;color:white; margin-right: 10px;font-size: 12px;font-weight: bold;">{{Auth::user()->name}}</a>
                         <a href="logout" style="color:white; margin-right: 10px;font-size: 12px;font-weight: bold;text-decoration: none;">LOGOUT</a>
                     @endif
                 </div>

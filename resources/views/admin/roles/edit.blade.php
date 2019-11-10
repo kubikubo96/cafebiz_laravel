@@ -1,7 +1,7 @@
 <!-- /.col-lg-12 -->
 <div class="col-md-12">
     <form action="admin/permissions/edit/{{$role->id}}"
-          id="editPermission" name="editPermission"  method="POST" style="padding: 10px 100px 0 20px;">
+          id="editRole" name="editPermission"  method="POST" style="padding: 10px 100px 0 20px;">
         <input type="hidden" name="id" value="{{$role->id}}"/>
         @csrf
         <div class="form-group">

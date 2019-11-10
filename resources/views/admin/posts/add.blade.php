@@ -2,25 +2,24 @@
      aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <button style="padding: 10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button style="padding: 10px; margin-top: 10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true" style="float: right;">&times;</span>
             </button>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-md-12">
                         <h1 class="page-header" style="margin-top: 0;">Posts
                             <small>Add</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                    <div class="col-lg-12" style="padding-bottom:15px">
-                        <form enctype="multipart/form-data" id="postForm" name="postForm" class="form-horizontal">
+                    <div class="col-md-12">
+                        <form enctype="multipart/form-data" id="postForm" name="postForm" class="form-horizontal"
+                              style="width: 90%; margin: 0 auto;">
                             {{--meta name="csrf-token"...  => phải có mới dùng đc ajax--}}
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                             <input type="hidden" name="user_id" id="user_id" value="{{Auth::id()}}"/>
                             <div class="form-group">
                                 <label>Title</label>
-                                <input class="form-control" name="title" id="title"  placeholder="Nhập title"/>
+                                <input class="form-control" name="title" id="title" placeholder="Nhập title"/>
                             </div>
                             <div class="form-group">
                                 <label>Title_link</label>
@@ -42,14 +41,12 @@
                         </form>
 
                     </div>
-                </div>
                 <!-- /.row -->
                 {{--                <div style="">--}}
                 {{--                    <p class="error_post text-danger hidden">here</p>--}}
                 {{--                </div>--}}
-            </div>
             <!-- /.container-fluid -->
-            <div class="modal-footer" style="margin-top: 10px;">
+            <div class="modal-footer" style="margin-top: 10px; border: none;">
                 <button type="button" id="saveChangePost" class="btn btn-primary">Save changes
                 </button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -57,7 +54,3 @@
         </div>
     </div>
 </div>
-
-
-<script src="admin_asset/ckeditor/ckeditor.js"></script>
-<script>CKEDITOR.replace('content_post_edit');</script>

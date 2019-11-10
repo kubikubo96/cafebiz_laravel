@@ -1,4 +1,4 @@
-<button style="padding: 10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+<button style="padding: 10px;margin-top: 10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true" style="float: right;">&times;</span>
 </button>
 <div class="container-fluid">
@@ -7,8 +7,8 @@
             <h1 class="page-header" style="margin-top: 0;">Sửa tin tức </h1>
         </div>
         <!-- /.col-lg-12 -->
-        <div class="col-lg-12" style="padding-bottom:15px">
-            <form enctype="multipart/form-data" id="editPost" name="editPost" class="form-horizontal">
+        <div class="col-lg-12" style="padding-bottom:15px;">
+            <form enctype="multipart/form-data" id="editPost" name="editPost" class="form-horizontal" style="width: 90%; margin: 0 auto;">
                 {{--                            meta name="csrf-token"...  => phải có mới dùng đc ajax--}}
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <input type="hidden" name="id" value="{{ @$post->id }}">

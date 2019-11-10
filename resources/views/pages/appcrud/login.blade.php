@@ -23,6 +23,11 @@
                                     {{session('notify')}}
                                 </div>
                             @endif
+                            @if(session('notifySuccess'))
+                                <div class="alert alert-success">
+                                    {{session('notifySuccess')}}
+                                </div>
+                            @endif
                             <form role="form" action="" method="POST">
                                 @csrf
                                 <fieldset>

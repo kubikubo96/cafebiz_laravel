@@ -1,40 +1,50 @@
-{{--@can('edit-profile')--}}
-{{--<h1>BẠN CÓ THỂ SỬA</h1>--}}
-{{--@endcan--}}
-
-{{--
-    cannot : ngược lại với can
-    - khi mà bạn không có quyền này, thì nó là true, còn có quền edit-profile thì sẽ fale
---}}
-{{--@cannot('edit-profile')--}}
-{{--<h1>Bạn không thể sữa</h1>--}}
-{{--@endcannot--}}
 @extends('admin.layouts.master')
 
 @section('content')
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
 
-    <!-- content-wapper -->
-    <div id="content-wrapper">
-        <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="admin/posts">Dashboard</a>
+    @include('admin.layouts.theme_panel')
+
+    <!-- BEGIN PAGE BAR -->
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-circle"></i>
                 </li>
-                <li class="breadcrumb-item active">Posts</li>
-            </ol>
-            <div class="col-md-12">
-                <button type="button"
-                        style="color:white;background-color: #169ad6; border: none; margin-bottom: 10px;"
-                        data-toggle="modal" id="add_post" data-target=".add_post">Add Post
-                </button>
-                @include('admin/posts/add')
+                <li>
+                    <span>Posts</span>
+                </li>
+            </ul>
+            <div class="page-toolbar">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn green btn-sm btn-outline"
+                            data-toggle="modal" id="add_post" data-target=".add_post"> Add Posts
+                    </button>
+                    @include('admin/posts/add')
+                </div>
             </div>
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        </div>
+        <!-- END PAGE BAR -->
+        <!-- BEGIN PAGE TITLE-->
+        <h1 class="page-title"> Posts Datatable
+            <small>posts of authors</small>
+        </h1>
+        <!-- END PAGE TITLE-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet box green">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-globe"></i>Posts
+                        </div>
+                        <div class="tools"></div>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-striped table-bordered table-hover postTable" id="sample_2">
                             <thead>
                             <tr>
                                 <th>Poster</th>
@@ -45,16 +55,6 @@
                                 <th>Delete</th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Poster</th>
-                                <th>Title</th>
-                                <th>Title_link</th>
-                                <th>Content_post</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            </tfoot>
                             <tbody id="posts_result">
                             @foreach($post as $pt)
                                 @include('admin.posts.row_post',[
@@ -65,22 +65,15 @@
                         </table>
                     </div>
                 </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
             </div>
-            <!-- DataTables Example -->
         </div>
-        <!-- /.container-fluid -->
-
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright © BossVn 2019</span>
-                </div>
-            </div>
-        </footer>
     </div>
-    <!-- end_content-wrapper -->
+    <!-- END CONTENT BODY -->
     @include('admin.posts.modal')
+@endsection
+
+@section('scriptPlugins')
 @endsection
 
 @section('script')
@@ -121,7 +114,7 @@
                             $('.error_post').removeClass('hidden');
                             $('.error_post').text(result.message);
                         }else{
-                            $("#dataTable").append(result);
+                            $(".postTable").append(result);
                             $('.error_post').addClass('hidden');
                             alert("Ajax Add thành công !!!");
                             //ẩn modal khi thêm thành công

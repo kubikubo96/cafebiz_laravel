@@ -1,5 +1,6 @@
 <tr id="user_id_{{$u->id}}">
     <td>{{$u->name}}</td>
+    <td>{{@$u->role->title}}</td>
     <td>{{$u->email}}</td>
     {{--<td>@if($u->admin == 0)--}}
             {{--No--}}

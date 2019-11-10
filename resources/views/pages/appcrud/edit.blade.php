@@ -21,7 +21,7 @@
                                     {{session('notify')}}
                                 </div>
                             @endif
-                            <form action="pages/appcrud/edit/{{$user->id}}" method="post">
+                            <form action="user_personal/{{$user->id}}" method="post">
                                 @csrf
                                 <div>
                                     <label>Họ tên</label>

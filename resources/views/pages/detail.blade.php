@@ -58,7 +58,7 @@
                                         <img class="media-object" src="http://placehold.it/64x64" alt="">
                                     </a>
                                     <div class="media-body">
-                                        <h5 class="media-heading">{{$cm->user->name}}
+                                        <h5 class="media-heading">{{@$cm->user->name}}
                                             <small>{{$cm->created_at}}</small>
                                         </h5>
                                         {{$cm->content_comment}}

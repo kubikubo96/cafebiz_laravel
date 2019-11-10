@@ -3,23 +3,17 @@
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div>
-                                <h4>Edit User</h4>
-                            </div>
-                        </div>
-                        <div class="col-md-3" style="text-align: right;">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
+            <div class="modal-header" style="border-bottom: none;">
+                <div style="text-align: right;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div>
+                    <h3>Edit User</h3>
                 </div>
             </div>
-            <div class="modal-body" id="modalEditUserContent">
+            <div class="modal-body" id="modalEditUserContent" style="padding: 0;">
 
 
             </div>

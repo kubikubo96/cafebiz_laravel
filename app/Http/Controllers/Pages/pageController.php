@@ -7,7 +7,9 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Mail;
 
 class pageController extends Controller
@@ -124,13 +126,29 @@ class pageController extends Controller
     }
 
     public function postForgotPassword(Request $request){
-        $input = $request->all();
-        Mail::send('mailfb', array('name'=>$input["name"],'email'=>$input["email"], 'content'=>$input['comment']), function($message){
-            $message->to('plachym.it@gmail.com', 'Visitor')->subject('Visitor Feedback!');
-        });
-        Session::flash('flash_message', 'Send message successfully!');
 
-        return view('form');
+        $yourMail = $request->email;
+
+        $yourUser = DB::table('users')->where('email',$yourMail)->first();
+
+        $yourID = $yourUser->id;
+
+        $user = User::find($yourID);
+
+        $passwordReset = str::random(10);
+
+        $user->password = bcrypt($passwordReset);
+
+        $user->save();
+
+        $details = [
+            'title' => 'Hãy đăng nhập và đổi mật khẩu ngay sau đó :)))',
+            'body' => 'Password của '.$yourMail.' là : '.$passwordReset,
+        ];
+
+        \Mail::to($yourMail)->send(new \App\Mail\MyTestMail($details));
+
+        return redirect('login')->with('notifySuccess','Check mail của bạn và đăng nhập bằng mật khẩu mới !!');
     }
 
 

@@ -3,16 +3,16 @@
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="border-bottom: none;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="padding-top: 0px;">
                 <div class="container-fluid" style="text-align: left;">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header" style="margin: 0;">Permissions
+                            <h1 class="page-header" style="margin: 0;">Permission
                                 <small>Add</small>
                             </h1>
                         </div>
@@ -20,6 +20,10 @@
                         <div class="col-lg-12" style="font-size: 16px;">
                             {{--                            meta name="csrf-token"...  => phải có mới dùng đc ajax--}}
                             <meta name="csrf-token" content="{{ csrf_token() }}">
+                            <div class="form-group" style="">
+                                <label>Title</label>
+                                <input class="form-control" name="title" id="title" placeholder="Nhập permission title"/>
+                            </div>
                             <div class="form-group" style="">
                                 <label>Name</label>
                                 <input class="form-control" name="name" id="name" placeholder="Nhập permission"/>

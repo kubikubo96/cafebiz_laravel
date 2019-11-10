@@ -21,10 +21,10 @@ class AdminLoginMiddleware
             if($user->admin == 1){
                 return $next($request);
             }else{
-                return redirect('admin/login');
+                return redirect('admin/login')->with('notify','Đăng nhập không thành công !!');
             }
         }else{
-            return redirect('admin/login');
+            return redirect('admin/login')->with('notify','Đăng nhập không thành công !!');
         }
     }
 }

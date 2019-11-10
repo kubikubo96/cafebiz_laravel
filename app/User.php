@@ -46,12 +46,12 @@ class User extends Authenticatable
     //tạo liên kết các model
     public function comments()
     {
-        return $this->hasMany('App\Comment', 'idUser', 'id');
+        return $this->hasMany('App\Comment', 'user_id', 'id');
     }
 
     public function posts()
     {
-        return $this->hasMany('App\Post', 'idUser', 'id');
+        return $this->hasMany('App\Post', 'user_id', 'id');
     }
 
     public function role(){

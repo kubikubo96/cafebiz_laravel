@@ -1,28 +1,50 @@
 @extends('admin.layouts.master')
 
 @section('content')
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
 
-    <!-- content-wapper -->
-    <div id="content-wrapper">
-        <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="admin/roles">Dashboard</a>
+    @include('admin.layouts.theme_panel')
+
+    <!-- BEGIN PAGE BAR -->
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-circle"></i>
                 </li>
-                <li class="breadcrumb-item active">Roles</li>
-            </ol>
-            <div class="col-md-12">
-                <button type="button" style="color:white;background-color: #169ad6; border: none; margin-bottom: 10px;"
-                        data-toggle="modal" data-target="#modalAddRole">Add role
-                </button>
-                @include('admin/roles/add')
+                <li>
+                    <span>Roles</span>
+                </li>
+            </ul>
+            <div class="page-toolbar">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn green btn-sm btn-outline dropdown-toggle"
+                            data-toggle="modal" data-target="#modalAddRole"> Add Role
+                    </button>
+                    @include('admin/roles/add')
+                </div>
             </div>
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered dataTableRole" id="dataTable" width="100%" cellspacing="0">
+        </div>
+        <!-- END PAGE BAR -->
+        <!-- BEGIN PAGE TITLE-->
+        <h1 class="page-title"> Roles Datatable
+            <small>roles</small>
+        </h1>
+        <!-- END PAGE TITLE-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet box green">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-globe"></i>Roles
+                        </div>
+                        <div class="tools"></div>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-striped table-bordered table-hover dataTableRole" id="sample_2">
                             <thead>
                             <tr>
                                 <th>Roles</th>
@@ -30,13 +52,6 @@
                                 <th>Delete</th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Roles</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            </tfoot>
                             <tbody id="posts_result">
                             @foreach($roles as $role)
                                 @include('admin.roles.row_role',[
@@ -47,21 +62,11 @@
                         </table>
                     </div>
                 </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
             </div>
-            <!-- DataTables Example -->
         </div>
-        <!-- /.container-fluid -->
-
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright © BossVn 2019</span>
-                </div>
-            </div>
-        </footer>
     </div>
-    <!-- end_content-wrapper -->
+    <!-- END CONTENT BODY -->
     @include('admin.roles.modal')
 @endsection
 
@@ -113,10 +118,10 @@
 
         function editRoleInModal() {
             var form_role = $("#editRole");
-            var id = form_role.find('input[title="id"]').val();
+            var id = form_role.find('input[name="id"]').val();
             var data = {
                 id: id,
-                title: form_role.find('input[title="title"]').val(),
+                title: form_role.find('input[name="title"]').val(),
             }
             $.ajax({
                 url: "{{route('admin.roles.edit')}}",

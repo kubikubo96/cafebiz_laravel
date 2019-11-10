@@ -1,42 +1,58 @@
 @extends('admin.layouts.master')
 
 @section('content')
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
 
-    <!-- content-wapper -->
-    <div id="content-wrapper">
-        <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="admin/roles">Dashboard</a>
+    @include('admin.layouts.theme_panel')
+
+        <!-- BEGIN PAGE BAR -->
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-circle"></i>
                 </li>
-                <li class="breadcrumb-item active">Permission</li>
-            </ol>
-            <div class="col-md-12">
-                <button type="button" style="color:white;background-color: #169ad6; border: none; margin-bottom: 10px;"
-                        data-toggle="modal" data-target="#modalAddPermission">Add permission
-                </button>
-                @include('admin/permissions/add')
+                <li>
+                    <span>Posts</span>
+                </li>
+            </ul>
+            <div class="page-toolbar">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn green btn-sm btn-outline dropdown-toggle"
+                            data-toggle="modal" data-target="#modalAddPermission"> Add Permission
+                    </button>
+                    @include('admin/permissions/add')
+                </div>
             </div>
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered dataTablePermission" id="dataTable" width="100%" cellspacing="0">
+        </div>
+        <!-- END PAGE BAR -->
+        <!-- BEGIN PAGE TITLE-->
+        <h1 class="page-title"> Permissions Datatable
+            <small>permissions</small>
+        </h1>
+        <!-- END PAGE TITLE-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet box green">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-globe"></i>Permissions
+                        </div>
+                        <div class="tools"></div>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-striped table-bordered table-hover dataTablePermission" id="sample_2">
                             <thead>
                             <tr>
-                                <th>name</th>
+                                <th>Title</th>
+                                <th>Name</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <th>name</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            </tfoot>
                             <tbody id="posts_result">
                             @foreach($permssions as $permission)
                                 @include('admin.permissions.row_permission',[
@@ -47,21 +63,11 @@
                         </table>
                     </div>
                 </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
             </div>
-            <!-- DataTables Example -->
         </div>
-        <!-- /.container-fluid -->
-
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright © BossVn 2019</span>
-                </div>
-            </div>
-        </footer>
     </div>
-    <!-- end_content-wrapper -->
+    <!-- END CONTENT BODY -->
     @include('admin.permissions.modal')
 @endsection
 
@@ -77,6 +83,7 @@
         //ajax create user
         function createPermission() {
             var data = {
+                title: $('#title').val(),
                 name: $('#name').val(),
             }
             $.ajax({
@@ -116,6 +123,7 @@
             var id = form_permission.find('input[name="id"]').val();
             var data = {
                 id: id,
+                title: form_permission.find('input[name="title"]').val(),
                 name: form_permission.find('input[name="name"]').val(),
             }
             $.ajax({

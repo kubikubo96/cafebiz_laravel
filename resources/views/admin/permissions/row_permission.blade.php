@@ -1,5 +1,8 @@
 <tr id="permission_id_{{$permission->id}}">
     <td>
+        {{$permission->title}}
+    </td>
+    <td>
         {{$permission->name}}
     </td>
     <td><a href="javascript:void(0);" onclick="openModalEditPermission({{$permission->id}})">Edit</a></td>
