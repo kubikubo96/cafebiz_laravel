@@ -8,7 +8,6 @@ use App\User;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
@@ -94,11 +93,11 @@ class UserController extends Controller
     public function postLoginAdmin(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required',
-            'password' => 'required'
+            'email' =>'required',
+            'password' => 'required',
         ], [
-            'email.required' => 'Bạn chưa nhập Email',
-            'password.required' => 'Bạn chưa nhập Password'
+            'email.required' => 'Bạn chưa nhập Email !',
+            'password.required' => 'Bạn chưa nhập Password !'
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

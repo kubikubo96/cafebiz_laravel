@@ -799,11 +799,3 @@
     </div>
     <!-- END CONTENT BODY -->
 @endsection
-
-@section('cssPlugins')
-    <link href="admin_asset/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
-    <link href="admin_asset/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-    <link href="admin_asset/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-    <link href="admin_asset/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
-@endsection
-

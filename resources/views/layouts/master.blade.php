@@ -18,7 +18,9 @@
 
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
     <script src="js/file.js"></script>
+
     @yield('script')
+
     {{--    Tự tạo khi làm--}}
     <base href="{{asset('')}}"/>
     <title>Cafebiz</title>
@@ -38,5 +40,8 @@
     @include('layouts.footer')
 </div>
 </body>
+
+@yield('script')
+
 </html>
 

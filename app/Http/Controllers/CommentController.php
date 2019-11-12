@@ -33,17 +33,24 @@ class CommentController extends Controller
         return redirect('admin/comments')->with('notify', 'Xóa comments thành công');
     }
 
-    public function postComment($id, Request $request)
+    public function postComment(Request $request)
     {
-        $post_id = $id;
-        $post = Post::find($id);
+
+        $post_id = $request->id_post;
+
         $comment = new Comment;
+
         $comment->post_id = $post_id;
+
         $comment->user_id = Auth::id();
+
         $comment->content_comment = $request->content_comment;
+
         $comment->save();
 
-        return redirect("detail/$id/" . $post->title_link . ".html")->with('notify', 'Viết bình luận thành công');
+        return view('pages.row_detail', [
+            'cm' => $comment,
+        ]);
 
     }
 }

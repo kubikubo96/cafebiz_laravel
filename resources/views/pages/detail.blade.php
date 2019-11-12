@@ -24,7 +24,7 @@
                                                                 border-radius: 4px;">
                                     @if(!isset(Auth::user()->name))
                                         <h4>Đăng nhập để bình luận<span class="glyphicon glyphicon-pencil"></span></h4>
-                                        <form action="comments/{{$post->id}}" method="post" role="form">
+                                        <form action="" method="" role="">
                                             @csrf
                                             <div class="form-group">
                                                 <textarea disabled class="form-control" name="content_comment"
@@ -37,13 +37,15 @@
                                             {{session('notify')}}
                                         @endif
                                         <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-                                        <form action="comments/{{$post->id}}" method="post"
+                                        <form action="comments" method="post"
                                               role="form">
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
                                             @csrf
+                                            <input type="hidden" id="id_post" value="{{$post->id}}"/>
                                             <div class="form-group">
-                                                <textarea class="form-control" name="content_comment" rows="3"></textarea>
+                                                <textarea class="form-control" name="content_comment" id="content_comment" rows="3"></textarea>
                                             </div>
-                                            <button type="submit" class="btn btn-dark">Comment</button>
+                                            <button type="button" onclick="addComment()" class="btn btn-dark">Comment</button>
                                         </form>
                                     @endif
                                 </div>
@@ -52,17 +54,8 @@
                         <!-- Posted Comments -->
                         @foreach($post->comment as $cm)
                             <div class="col-md-12">
-                                <div class="media"
-                                     style="overflow: hidden;zoom: 1;padding-top: 15px;box-sizing: border-box; border-bottom: 1px solid #dddddd;margin-bottom: 15px;">
-                                    <a class="pull-left" href="#" style="padding-right: 10px;">
-                                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">{{@$cm->user->name}}
-                                            <small>{{$cm->created_at}}</small>
-                                        </h5>
-                                        {{$cm->content_comment}}
-                                    </div>
+                                <div class="row" id="contentComment">
+                                    @include('pages.row_detail',['cm'=>$cm])
                                 </div>
                             </div>
                         @endforeach
@@ -78,3 +71,31 @@
     </div>
     <!-- end_page_content -->
 @endsection('content')
+
+@section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        //add comment
+        function addComment(){
+            var data = {
+                id_post: $('#id_post').val(),
+                content_comment: $('#content_comment').val(),
+            }
+
+            $.ajax({
+                url:"{{route('comments')}}",
+                type: "post",
+                dataType: "text",
+                data:data,
+                success: function(result){
+                    $("#contentComment").append(result);
+                }
+            });
+        }
+    </script>
+@endsection

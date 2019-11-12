@@ -3,7 +3,7 @@
         {{@$cm->user->name}}
     </td>
     <td>
-        {{$cm->post->title}}
+        {{@$cm->post->title}}
     </td>
     <td>
         {{$cm->content_comment}}

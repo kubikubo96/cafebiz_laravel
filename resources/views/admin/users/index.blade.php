@@ -57,9 +57,7 @@
                             </thead>
                             <tbody>
                             @foreach($user as $u)
-                                @include('admin.users.row_user',[
-                                        'u' => $u,
-                                    ])
+                                @include('admin.users.row_user',['u' => $u ])
                             @endforeach
                             </tbody>
                         </table>

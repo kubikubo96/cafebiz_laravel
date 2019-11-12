@@ -65,6 +65,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
+<!-- BEGIN LOGIN FORM -->
     @if(count($errors) > 0)
         <div class="alert alert-danger">
             @foreach($errors->all() as $err)
@@ -72,7 +73,11 @@ License: You must have a valid license purchased only from themeforest(the above
             @endforeach
         </div>
     @endif
-<!-- BEGIN LOGIN FORM -->
+    @if(session('notify'))
+        <div class="alert alert-danger">
+            {{session('notify')}}
+        </div>
+    @endif
     <form class="login-form" role="form" action="admin/login" method="POST">
         @csrf
         <h3 class="form-title font-green">Sign In</h3>

@@ -68,10 +68,16 @@
     </div>
     <!-- END CONTENT BODY -->
     @include('admin.roles.modal')
+
 @endsection
 
 @section('script')
     <script>
+
+        $(document).ready(function () {
+            $("#select_permission").select2();
+        });
+
         //$.ajaxSetup phải có mới gửi ajax đc trong laravel
         $.ajaxSetup({
             headers: {
@@ -80,15 +86,35 @@
         });
 
         //ajax create user
-        function createRole() {
-            var data = {
-                title: $('#title').val(),
-            }
+        {{--function createRole() {--}}
+            {{--var form =--}}
+                {{--$.ajax({--}}
+                    {{--url: "{{route('admin.roles.add')}}",--}}
+                    {{--type: "post",--}}
+                    {{--dateType: "text",--}}
+                    {{--data: $(form).serialize(),--}}
+                    {{--success: function (result) {--}}
+                        {{--if (result.status) {--}}
+                            {{--$('.error_user').removeClass('hidden');--}}
+                            {{--$('.error_user').text(result.message);--}}
+                        {{--} else {--}}
+                            {{--$('.error_user').removeClass('hidden');--}}
+                            {{--$(".dataTableRole").append(result);--}}
+                            {{--$('#modalAddRole').modal('hide');--}}
+                            {{--alert('Add role thành công !');--}}
+                        {{--}--}}
+                    {{--}--}}
+                {{--});--}}
+        {{--}--}}
+
+        $("#formCreateRole").submit(function (e) {
+            //preventDefault :ngăn submit và chuyển trang trong form
+            e.preventDefault();
             $.ajax({
-                url: "{{route('admin.roles.add')}}",
+                url: $(this).attr('action'),
                 type: "post",
                 dateType: "text",
-                data: data,
+                data: $(this).serialize(),
                 success: function (result) {
                     if (result.status) {
                         $('.error_user').removeClass('hidden');
@@ -101,7 +127,8 @@
                     }
                 }
             });
-        }
+            return false;
+        });
 
         //open modal edit
         function openModalEditRole(id) {

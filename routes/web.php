@@ -138,4 +138,4 @@ Route::post('user_personal/{id}', 'Pages\PageController@postUserPersonal');
 
 Route::get('detail/{id}/{title_link}.html', 'Pages\PageController@getDetail');
 
-Route::post('comments/{id}', 'CommentController@postComment');
+Route::post('comments', 'CommentController@postComment')->name('comments');

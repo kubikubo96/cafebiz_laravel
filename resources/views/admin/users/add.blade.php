@@ -49,15 +49,6 @@
                                     <input name="admin" class="admin" value="1" type="radio">Admin
                                 </label>
                             </div>
-                            {{--<div class="form-group" style="float: right;">--}}
-                                {{--<div><label style="font-weight: bold;">Roles</label></div>--}}
-                                {{--<label class="radio-inline">--}}
-                                    {{--<input name="role_id" class="role_id" value="2" checked type="radio">Author--}}
-                                {{--</label>--}}
-                                {{--<label class="radio-inline">--}}
-                                    {{--<input name="role_id" class="role_id" value="1" type="radio">UserMagent--}}
-                                {{--</label>--}}
-                            {{--</div>--}}
                             <div class="form-group">
                                 <label style="font-weight: bold;">Roles</label>
                                 <select class="form-control" name="roles" id="roles">
