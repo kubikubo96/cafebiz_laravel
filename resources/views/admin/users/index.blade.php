@@ -76,7 +76,7 @@
                 email: $('#email').val(),
                 password: $('#password').val(),
                 confirm_password: $('#confirm_password').val(),
-                admin: $('.admin:checked').val()
+                admin: $('.admin').val()
             }
             $.ajax({
                 url: "{{route('user.add')}}",

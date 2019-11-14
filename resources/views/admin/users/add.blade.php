@@ -41,15 +41,9 @@
                                        placeholder="Nhập lại password"/>
                             </div>
                             <div class="form-group">
-                                <div><label style="font-weight: bold;">Quyền người dùng</label></div>
-                                <label class="radio-inline">
-                                    <input name="admin" class="admin" value="0" checked type="radio">Thường
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="admin" class="admin" value="1" type="radio">Admin
-                                </label>
+                                    <input name="admin" class="admin" value="1" type="hidden">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="roles_admin">
                                 <label style="font-weight: bold;">Roles</label>
                                 <select class="form-control" name="roles" id="roles">
                                     @foreach($rolesForAddUser as $role)
