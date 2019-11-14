@@ -29,7 +29,7 @@
                                 <input class="form-control" name="name" id="name" placeholder="Nhập permission"/>
                             </div>
                             <div style="margin-top: 20px;">
-                                <p class="error_user text-danger hidden"></p>
+                                <p class="error_permission text-danger hidden"></p>
                             </div>
                         </div>
                     </div>

@@ -25,8 +25,8 @@ class PermissionController extends Controller
 
     public function postAdd(Request $request)
     {
-        if (empty($request->name)) {
-            return ['status' => 1, 'message' => 'Add user thất bại !!'];
+        if (empty($request->name) || empty($request->title)) {
+            return ['status' => 1, 'message' => 'Add permission thất bại !!'];
         }
 
         $this->permissionRepository->create_permission($request);

@@ -36,7 +36,7 @@
                                 <input type="file" name="image" id="image">
                             </div>
                             <div style="margin-top: 20px;">
-                                <p class="error_user text-danger hidden"></p>
+                                <p class="error_post text-danger hidden"></p>
                             </div>
                         </form>
                     </div>

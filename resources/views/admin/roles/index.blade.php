@@ -80,10 +80,10 @@
                 data: $(this).serialize(),
                 success: function (result) {
                     if (result.status) {
-                        $('.error_user').removeClass('hidden');
-                        $('.error_user').text(result.message);
+                        $('.error_role').removeClass('hidden');
+                        $('.error_role').text(result.message);
                     } else {
-                        $('.error_user').removeClass('hidden');
+                        $('.error_role').removeClass('hidden');
                         $(".portlet-body").html(result);
                         //init dataTable
                         $('#sample_2').dataTable();

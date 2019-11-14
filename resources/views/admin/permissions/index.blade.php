@@ -119,10 +119,10 @@
                 data: data,
                 success: function (result) {
                     if (result.status) {
-                        $('.error_user').removeClass('hidden');
-                        $('.error_user').text(result.message);
+                        $('.error_permission').removeClass('hidden');
+                        $('.error_permission').text(result.message);
                     } else {
-                        $('.error_user').addClass('hidden');
+                        $('.error_permission').addClass('hidden');
                         $(".portlet-body").html(result);
                         //init dataTable
                         $('#sample_2').dataTable();
