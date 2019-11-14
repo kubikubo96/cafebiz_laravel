@@ -25,7 +25,12 @@ class UserRepository extends EloquentRepository
         $data['role_id'] = $attributes->role_id;
         $data['email'] = $attributes->email;
         $data['password'] = bcrypt($attributes->password);
-        $data['admin'] = $attributes->admin;
+
+        if(!empty($attributes->admin)){
+            $data['admin'] = $attributes->admin;
+        }else{
+            $data['admin'] = 0;
+        }
 
         $result = $this->create($data);
 

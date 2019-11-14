@@ -16,6 +16,7 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
     {
         return \App\Post::class;
     }
+
     //xử lý postAdd bên PostController
     public function create_post($attributes)
     {
@@ -46,8 +47,10 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
 
         return $result;
     }
+
     //xử lý openEditModal bên PostController
-    public function openEditModal_post($attributes){
+    public function openEditModal_post($attributes)
+    {
 
         $data = $attributes->all();
         $id = $data['id'];
@@ -56,7 +59,8 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
     }
 
     //xử lý postEdit bên PostController
-    public function postEditRepo($attributes){
+    public function postEditRepo($attributes)
+    {
         $data = array();
         $data['id'] = $attributes->id;
         $data['title'] = $attributes->title;
@@ -82,9 +86,26 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
 
         }
 
-        $result = $this->update( $data['id'],$data);
+        $result = $this->update($data['id'], $data);
 
         return $result;
+    }
+
+    public function postPaginate()
+    {
+        $post_paginate = \App\Post::paginate(3);
+        return $post_paginate;
+    }
+
+    public function postHotNews()
+    {
+        $hotnews = \App\Post::first();
+        return $hotnews;
+    }
+
+    public function postHotNews2(){
+        $hotnews2 = \App\Post::all()->skip(1)->take(3);
+        return $hotnews2;
     }
 
 }

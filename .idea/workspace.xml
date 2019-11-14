@@ -5,12 +5,12 @@
     <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php" line="47" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daa2a75f-fc65-48bd-973e-d6bbc6b9d90d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Repositories/PermissionRoles/PermissionRoleRepository.php" afterDir="false" />
+    <list default="true" id="daa2a75f-fc65-48bd-973e-d6bbc6b9d90d" name="Default Changelist" comment="1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Role/RoleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Role/RoleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pages/pageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pages/pageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/User/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/User/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +36,15 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/pages/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-60" />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -47,10 +55,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>my_multi_select1</find>
-      <find>dashboard.min.js</find>
-      <find>-nav.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</find>
-      <find>admin_asset</find>
       <find>href</find>
       <find>toggler</find>
       <find>ti-select.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</find>
@@ -63,7 +67,6 @@
       <find>PostAdd</find>
       <find>multi-select</find>
       <find>select</find>
-      <find>homepage</find>
       <find>Thời</find>
       <find>dataTables</find>
       <find>dataTables_length</find>
@@ -77,6 +80,11 @@
       <find>dt-buttons</find>
       <find>uSER</find>
       <find>role</find>
+      <find>User</find>
+      <find>App\Repositories\Post\Post</find>
+      <find>login</find>
+      <find>homepage</find>
+      <find>logout</find>
     </findStrings>
     <replaceStrings>
       <replace>user_id</replace>
@@ -91,14 +99,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/emails/myTestMail.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SendMailController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/login/forgotpassword.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/login/forgot_password.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/appcrud/forgot_password.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/appcrud/login.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/appcrud/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Pages/PageController.php" />
         <option value="$PROJECT_DIR$/app/Mail/MyTestMail.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/detail.blade.php" />
@@ -121,10 +127,8 @@
         <option value="$PROJECT_DIR$/app/Http/Middleware/AdminLoginMiddleware.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/posts/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/posts/row_post.blade.php" />
         <option value="$PROJECT_DIR$/app/Repositories/User/UserRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/users/row_user.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/roles/row_role.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/permissions/row_permission.blade.php" />
@@ -133,7 +137,6 @@
         <option value="$PROJECT_DIR$/resources/views/admin/permissions/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/roles/add.blade.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/User/UserRepository.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PermissionController.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Permission/PermissionRepository.php" />
@@ -142,6 +145,11 @@
         <option value="$PROJECT_DIR$/resources/views/admin/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Role/RoleRepository.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Page/PageRepository.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/User/UserRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Pages/PageController.php" />
       </list>
     </option>
   </component>
@@ -297,13 +305,6 @@
               <item name="cafebiz_laravel" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Repositories" type="462c0819:PsiDirectoryNode" />
-              <item name="Permission" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cafebiz_laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cafebiz_laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
               <item name="Post" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -311,7 +312,12 @@
               <item name="cafebiz_laravel" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Repositories" type="462c0819:PsiDirectoryNode" />
-              <item name="Role" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cafebiz_laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cafebiz_laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cafebiz_laravel" type="b2602c69:ProjectViewProjectNode" />
@@ -329,23 +335,7 @@
               <item name="cafebiz_laravel" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cafebiz_laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cafebiz_laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cafebiz_laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cafebiz_laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="roles" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -430,7 +420,7 @@
       <workItem from="1573524333714" duration="5780000" />
       <workItem from="1573534418218" duration="14218000" />
       <workItem from="1573575127239" duration="5552000" />
-      <workItem from="1573697433225" duration="19682000" />
+      <workItem from="1573697433225" duration="21981000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1573313987307</created>
@@ -460,14 +450,29 @@
       <option name="project" value="LOCAL" />
       <updated>1573717078562</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="1">
+      <created>1573721793351</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1573721793351</updated>
+    </task>
+    <task id="LOCAL-00006" summary="1">
+      <created>1573722073401</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1573722073401</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167997000" />
+    <option name="totallyTimeSpent" value="170296000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1380" height="735" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28484848" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -523,37 +528,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Permission_Roles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-          <folding>
-            <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Comment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding>
-            <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CommentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding>
-            <element signature="e#40#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/roles/script_multi_select.blade.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/admin/layouts/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
@@ -614,13 +588,6 @@
             <element signature="e#63#69#0" expanded="true" />
             <element signature="e#69#75#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="38" column="21" lean-forward="true" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -693,16 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-123">
-          <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
-          <folding>
-            <element signature="e#41#81#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -785,26 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
-          <folding>
-            <element signature="e#40#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/posts/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-249">
@@ -823,16 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="15" column="4761" lean-forward="true" selection-start-line="15" selection-start-column="4761" selection-end-line="15" selection-end-column="4771" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/User/UserRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="57" selection-start-line="56" selection-start-column="7" selection-end-line="57" />
-          <folding>
-            <element signature="e#41#81#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -864,16 +791,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="67" column="38" lean-forward="true" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Pages/PageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <element signature="e#46#82#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -916,6 +833,91 @@
         <state relative-caret-position="137">
           <caret line="25" column="86" selection-start-line="25" selection-start-column="81" selection-end-line="25" selection-end-column="86" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Permission_Roles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+          <folding>
+            <element signature="e#23#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Page/PageRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding>
+            <element signature="e#41#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="21" column="48" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="48" />
+          <folding>
+            <element signature="e#40#76#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Pages/PageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding>
+            <element signature="e#46#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/User/UserRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+          <folding>
+            <element signature="e#41#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
+          <folding>
+            <element signature="e#41#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="46" column="39" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pages/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60" />
       </provider>
     </entry>
   </component>

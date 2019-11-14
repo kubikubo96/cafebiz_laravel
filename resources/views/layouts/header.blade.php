@@ -38,7 +38,7 @@
                     </li>
                 </ul>
                 <div class="my-2 my-lg-0">
-                    @if(!isart(Auth::user()->name))
+                    @if(!isset(Auth::user()->name))
                         <a href="login" style="color:white; margin-right: 10px;font-size: 12px;font-weight: bold;text-decoration: none;">ĐĂNG NHẬP</a>
                         <a href="register" style="color:white; margin-right: 10px;font-size: 12px;font-weight: bold;text-decoration: none;">ĐĂNG KÝ</a>
                     @else
