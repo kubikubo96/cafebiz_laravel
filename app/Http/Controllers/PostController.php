@@ -88,7 +88,9 @@ class PostController extends Controller
 
         $this->postRepository->delete($request->id);
 
-        return redirect('admin/posts');
+        $post= $this->postRepository->getAll();
+
+        return view('admin.posts.row_post', compact('post'));
 
     }
 }

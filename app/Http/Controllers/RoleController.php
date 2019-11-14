@@ -90,10 +90,13 @@ class RoleController extends Controller
 
     public function postDelete(Request $request)
     {
-        $user = $this->roleRepository->find($request->id);
-        $user->delete();
+        $role = $this->roleRepository->find($request->id);
 
-        return redirect('admin/roles');
+        $role->delete();
+
+        $roles = $this->roleRepository->getAll();
+
+        return view('admin.roles.row_role', compact('roles'));
     }
 
 

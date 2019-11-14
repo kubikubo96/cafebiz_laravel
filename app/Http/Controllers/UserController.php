@@ -71,9 +71,12 @@ class UserController extends Controller
     function postDelete(Request $request)
     {
         $user = $this->userRepository->find($request->id);
+
         $user->delete();
 
-        return redirect('admin/users');
+        $user = $this->userRepository->getAll();
+
+        return view('admin.users.row_user', compact('user'));
     }
 
     public function getLoginAdmin()

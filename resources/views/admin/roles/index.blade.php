@@ -141,8 +141,10 @@
                 url: "{{route('admin.roles.delete')}}",
                 type: "POST",
                 data: {id: id},
-                success: function () {
-                    $("#role_id_" + id).remove();
+                success: function (result) {
+                    $(".portlet-body").html(result);
+                    //init dataTable
+                    $('#sample_2').dataTable();
                     alert("Bạn đã xóa thành công !");
                 }
             });

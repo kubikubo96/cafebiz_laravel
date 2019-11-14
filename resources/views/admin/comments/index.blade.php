@@ -7,7 +7,7 @@
 
     @include('admin.layouts.theme_panel')
 
-        <!-- BEGIN PAGE BAR -->
+    <!-- BEGIN PAGE BAR -->
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
@@ -38,23 +38,9 @@
                         <div class="tools"></div>
                     </div>
                     <div class="portlet-body">
-                        <table class="table table-striped table-bordered table-hover dataTableComment" id="sample_2">
-                            <thead>
-                            <tr>
-                                <th>Commenter</th>
-                                <th>Title of Posts</th>
-                                <th>Content Comment</th>
-                                <th>Delete</th>
-                            </tr>
-                            </thead>
-                            <tbody id="comment_result">
-                            @foreach($comment as $cm)
-                                @include('admin.comments.row_comment',[
-                                    'cm' => $cm
+                        @include('admin.comments.row_comment',[
+                                    'comment' => $comment
                                 ])
-                            @endforeach
-                            </tbody>
-                        </table>
                     </div>
                 </div>
                 <!-- END EXAMPLE TABLE PORTLET-->
@@ -72,6 +58,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         function deleteComment(id) {
             confirmDeleteComment = confirm("Bạn có chắc muốn xóa không")
             if (!confirmDeleteComment) {
@@ -81,8 +68,10 @@
                 url: "{{route('admin.comments.delete')}}",
                 type: "POST",
                 data: {id: id},
-                success: function () {
-                    $("#comment_id_" + id).remove();
+                success: function (result) {
+                    $(".portlet-body").html(result);
+                    //init dataTable
+                    $('#sample_2').dataTable();
                     alert("Bạn đã xóa thành công !");
                 }
             });

@@ -61,9 +61,12 @@ class PermissionController extends Controller
 
     public function postDelete(Request $request)
     {
-        $user = Permission::find($request->id);
-        $user->delete();
+        $permission = Permission::find($request->id);
 
-        return redirect('admin/permissions');
+        $permission->delete();
+
+        $permissions = $this->permissionRepository->getAll();
+
+        return view('admin.permissions.row_permission', compact('permissions'));
     }
 }

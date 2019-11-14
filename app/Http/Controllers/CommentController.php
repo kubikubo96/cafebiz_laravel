@@ -42,7 +42,6 @@ class CommentController extends Controller
 
     public function postDelete(Request $request)
     {
-
         $comment = $this->commentRepository->find($request->id);
 
         $post = $this->postRepository->find($comment->post_id);
@@ -52,6 +51,8 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return redirect('admin/comments')->with('notify', 'Xóa comments thành công');
+        $comment = $this->commentRepository->getAll();
+
+        return view('admin.comments.row_comment',compact('comment'));
     }
 }

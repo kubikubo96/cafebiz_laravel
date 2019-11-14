@@ -170,8 +170,11 @@
                 url: "{{route('admin.users.delete')}}",
                 type: "POST",
                 data: {id: id},
-                success: function () {
-                    $("#user_id_" + id).remove();
+                success: function (result) {
+                    // $("#user_id_" + id).remove();
+                    $(".portlet-body").html(result);
+                    //init dataTable
+                    $('#sample_2').dataTable();
                     alert("Bạn đã xóa thành công !");
                 }
             });
