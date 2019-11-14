@@ -24,7 +24,7 @@ class AdminLoginMiddleware
                 return redirect('admin/login')->with('notify','Đăng nhập không thành công !!');
             }
         }else{
-            return redirect('admin/login')->with('notify','Đăng nhập không thành công !!');
+            return redirect('admin/login');
         }
     }
 }

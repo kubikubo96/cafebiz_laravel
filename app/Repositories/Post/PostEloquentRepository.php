@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\post;
+namespace App\Repositories\Post;
 
 use App\Repositories\EloquentRepository;
 use Illuminate\Support\Carbon;
@@ -48,6 +48,7 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
     }
     //xử lý openEditModal bên PostController
     public function openEditModal_post($attributes){
+
         $data = $attributes->all();
         $id = $data['id'];
         $result = $this->find($id);

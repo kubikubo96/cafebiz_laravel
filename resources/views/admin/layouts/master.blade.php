@@ -52,12 +52,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="admin_asset/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet"
           type="text/css"/>
     <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="admin_asset/global/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
-    <link href="admin_asset/global/plugins/jquery-multi-select/css/multi-select.css" rel="stylesheet" type="text/css" />
-    <link href="admin_asset/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="admin_asset/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="admin_asset/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
     <link href="admin_asset/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
@@ -67,6 +61,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="admin_asset/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
     <link href="admin_asset/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
+    @yield('css')
     <link rel="shortcut icon" href="favicon.ico" /> </head>
     <section ></section>
 <!-- END HEAD -->
@@ -689,43 +684,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END CONTAINER -->
     @include('admin.layouts.footer')
 </div>
-<!-- BEGIN QUICK NAV -->
-<nav class="quick-nav">
-    <a class="quick-nav-trigger" href="#0">
-        <span aria-hidden="true"></span>
-    </a>
-    <ul>
-        <li>
-            <a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes"
-               target="_blank" class="active">
-                <span>Purchase Metronic</span>
-                <i class="icon-basket"></i>
-            </a>
-        </li>
-        <li>
-            <a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/reviews/4021469?ref=keenthemes"
-               target="_blank">
-                <span>Customer Reviews</span>
-                <i class="icon-users"></i>
-            </a>
-        </li>
-        <li>
-            <a href="http://keenthemes.com/showcast/" target="_blank">
-                <span>Showcase</span>
-                <i class="icon-user"></i>
-            </a>
-        </li>
-        <li>
-            <a href="http://keenthemes.com/metronic-theme/changelog/" target="_blank">
-                <span>Changelog</span>
-                <i class="icon-graph"></i>
-            </a>
-        </li>
-    </ul>
-    <span aria-hidden="true" class="quick-nav-bg"></span>
-</nav>
-<div class="quick-nav-overlay"></div>
-<!-- END QUICK NAV -->
 <!--[if lt IE 9]>
 <script src="admin_asset/global/plugins/respond.min.js"></script>
 <script src="admin_asset/global/plugins/excanvas.min.js"></script>
@@ -740,43 +698,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="admin_asset/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
-{{--start admin--}}
-<!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/horizontal-timeline/horizontal-timeline.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS --
-{{--end Admin--}}
-
 {{--start: datatable--}}
-<-- BEGIN PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS !-->
 <script src="admin_asset/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="admin_asset/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="admin_asset/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"
@@ -812,7 +735,6 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="admin_asset/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
 <script src="admin_asset/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
 <script src="admin_asset/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-<script src="admin_asset/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 
 {{--    ckeditor--}}

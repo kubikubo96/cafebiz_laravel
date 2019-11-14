@@ -43,25 +43,9 @@
                         </div>
                         <div class="tools"></div>
                     </div>
-                    <div class="portlet-body">
-                        <table class="table table-striped table-bordered table-hover dataTableUser" id="sample_2">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Roles</th>
-                                <th>Email</th>
-                                <th>Created_at</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($user as $u)
-                                @include('admin.users.row_user',['u' => $u ])
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+
+                    @include('admin.users.row_user',['user' => $user])
+
                 </div>
                 <!-- END EXAMPLE TABLE PORTLET-->
             </div>
@@ -70,6 +54,7 @@
     <!-- END CONTENT BODY -->
     {{--include modal users--}}
     @include('admin.users.modal')
+
 @endsection
 
 @section('script')
@@ -104,7 +89,9 @@
                         $('.error_user').html(result.message);
                     } else {
                         $('.error_user').removeClass('hidden');
-                        $(".dataTableUser").append(result);
+                        $(".portlet-body").html(result);
+                        //init dataTable
+                        $('#sample_2').dataTable();
                         $('#add_user').modal('hide');
                         alert('Add user thành công !');
                     }
@@ -163,7 +150,9 @@
                         $('.error_user').text(result.message);
                     } else {
                         $('.error_user').addClass('hidden');
-                        $('#user_id_' + id).replaceWith(result);
+                        $(".portlet-body").html(result);
+                        //init dataTable
+                        $('#sample_2').dataTable();
                         alert("Edit thành công !!!");
                         $('#editUserModal').modal('hide');
                     }

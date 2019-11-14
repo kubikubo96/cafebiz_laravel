@@ -43,24 +43,9 @@
                         </div>
                         <div class="tools"></div>
                     </div>
-                    <div class="portlet-body">
-                        <table class="table table-striped table-bordered table-hover dataTableRole" id="sample_2">
-                            <thead>
-                            <tr>
-                                <th>Roles</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            </thead>
-                            <tbody id="posts_result">
-                            @foreach($roles as $role)
-                                @include('admin.roles.row_role',[
-                                    'role' => $role
+                    @include('admin.roles.row_role',[
+                                    'roles' => $roles
                                 ])
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
                 <!-- END EXAMPLE TABLE PORTLET-->
             </div>
@@ -72,8 +57,8 @@
 @endsection
 
 @section('script')
-    <script>
 
+    <script>
         $(document).ready(function () {
             $("#select_permission").select2();
         });
@@ -85,31 +70,9 @@
             }
         });
 
-        //ajax create user
-        {{--function createRole() {--}}
-            {{--var form =--}}
-                {{--$.ajax({--}}
-                    {{--url: "{{route('admin.roles.add')}}",--}}
-                    {{--type: "post",--}}
-                    {{--dateType: "text",--}}
-                    {{--data: $(form).serialize(),--}}
-                    {{--success: function (result) {--}}
-                        {{--if (result.status) {--}}
-                            {{--$('.error_user').removeClass('hidden');--}}
-                            {{--$('.error_user').text(result.message);--}}
-                        {{--} else {--}}
-                            {{--$('.error_user').removeClass('hidden');--}}
-                            {{--$(".dataTableRole").append(result);--}}
-                            {{--$('#modalAddRole').modal('hide');--}}
-                            {{--alert('Add role thành công !');--}}
-                        {{--}--}}
-                    {{--}--}}
-                {{--});--}}
-        {{--}--}}
-
-        $("#formCreateRole").submit(function (e) {
+        $("#formCreateRole").submit(function (ad) {
             //preventDefault :ngăn submit và chuyển trang trong form
-            e.preventDefault();
+            ad.preventDefault();
             $.ajax({
                 url: $(this).attr('action'),
                 type: "post",
@@ -121,7 +84,9 @@
                         $('.error_user').text(result.message);
                     } else {
                         $('.error_user').removeClass('hidden');
-                        $(".dataTableRole").append(result);
+                        $(".portlet-body").html(result);
+                        //init dataTable
+                        $('#sample_2').dataTable();
                         $('#modalAddRole').modal('hide');
                         alert('Add role thành công !');
                     }
@@ -139,35 +104,33 @@
                 success: function (result) {
                     $('#modalEditRole').modal('show');
                     $('#modalEditRoleContent').html(result);
+                    $(".multi-select").multiSelect();
                 }
             });
         }
 
-        function editRoleInModal() {
-            var form_role = $("#editRole");
-            var id = form_role.find('input[name="id"]').val();
-            var data = {
-                id: id,
-                title: form_role.find('input[name="title"]').val(),
-            }
+        //edit role
+        $("#editRole").submit(function (e) {
+            //preventDefault :ngăn submit và chuyển trang trong form
+            e.preventDefault();
+
+            id = $("#editRole").find('input[name="id"]').val();
+
             $.ajax({
-                url: "{{route('admin.roles.edit')}}",
+                url: $(this).attr('action'),
                 type: "post",
                 dateType: "text",
-                data: data,
+                data: $(this).serialize(),
                 success: function (result) {
-                    if (result.status) {
-                        $('.error_user').removeClass('hidden');
-                        $('.error_user').text(result.message);
-                    } else {
-                        $('.error_user').addClass('hidden');
-                        $('#role_id_' + id).replaceWith(result);
-                        alert("Edit thành công !!!");
-                        $('#modalEditRole').modal('hide');
-                    }
+                    $(".portlet-body").html(result);
+                    //init dataTable
+                    $('#sample_2').dataTable();
+                    alert("Edit thành công !!!");
+                    $('#modalEditRole').modal('hide');
                 }
             });
-        }
+
+        });
 
         function deleteRole(id) {
             confirmDeleteRole = confirm("Bạn có chắc muốn xóa không")
@@ -186,4 +149,14 @@
         }
 
     </script>
+
+@endsection
+
+@section('css')
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="admin_asset/global/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" type="text/css"/>
+    <link href="admin_asset/global/plugins/jquery-multi-select/css/multi-select.css" rel="stylesheet" type="text/css"/>
+    <link href="admin_asset/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="admin_asset/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <!-- END PAGE LEVEL PLUGINS -->
 @endsection

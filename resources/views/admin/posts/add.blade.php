@@ -39,13 +39,7 @@
                                 <p class="error_user text-danger hidden"></p>
                             </div>
                         </form>
-
                     </div>
-                <!-- /.row -->
-                {{--                <div style="">--}}
-                {{--                    <p class="error_post text-danger hidden">here</p>--}}
-                {{--                </div>--}}
-            <!-- /.container-fluid -->
             <div class="modal-footer" style="margin-top: 10px; border: none;">
                 <button type="button" id="saveChangePost" class="btn btn-primary">Save changes
                 </button>

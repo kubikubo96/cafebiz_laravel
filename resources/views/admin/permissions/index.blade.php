@@ -7,7 +7,7 @@
 
     @include('admin.layouts.theme_panel')
 
-        <!-- BEGIN PAGE BAR -->
+    <!-- BEGIN PAGE BAR -->
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
@@ -43,25 +43,9 @@
                         </div>
                         <div class="tools"></div>
                     </div>
-                    <div class="portlet-body">
-                        <table class="table table-striped table-bordered table-hover dataTablePermission" id="sample_2">
-                            <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Name</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            </thead>
-                            <tbody id="posts_result">
-                            @foreach($permssions as $permission)
-                                @include('admin.permissions.row_permission',[
-                                    '$permission' => $permission
+                    @include('admin.permissions.row_permission',[
+                                    'permissions' => $permissions
                                 ])
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
                 <!-- END EXAMPLE TABLE PORTLET-->
             </div>
@@ -97,7 +81,9 @@
                         $('.error_user').text(result.message);
                     } else {
                         $('.error_user').removeClass('hidden');
-                        $(".dataTablePermission").append(result);
+                        $(".portlet-body").html(result);
+                        //init dataTable
+                        $('#sample_2').dataTable();
                         $('#modalAddPermission').modal('hide');
                         alert('Add permission thành công !');
                     }
@@ -137,7 +123,9 @@
                         $('.error_user').text(result.message);
                     } else {
                         $('.error_user').addClass('hidden');
-                        $('#permission_id_' + id).replaceWith(result);
+                        $(".portlet-body").html(result);
+                        //init dataTable
+                        $('#sample_2').dataTable();
                         alert("Edit thành công !!!");
                         $('#modalEditPermission').modal('hide');
                     }

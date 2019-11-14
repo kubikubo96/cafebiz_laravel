@@ -44,30 +44,14 @@
                         <div class="tools"></div>
                     </div>
                     <div class="portlet-body">
-                        <table class="table table-striped table-bordered table-hover postTable" id="sample_2">
-                            <thead>
-                            <tr>
-                                <th>Poster</th>
-                                <th>Title</th>
-                                <th>Title_link</th>
-                                <th>Content_post</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            </thead>
-                            <tbody id="posts_result">
-                            @foreach($post as $pt)
-                                @include('admin.posts.row_post',[
-                                    'pt' => $pt,
-                                ])
-                            @endforeach
-                            </tbody>
-                        </table>
+                        @include('admin.posts.row_post',['post'=>$post])
                     </div>
                 </div>
                 <!-- END EXAMPLE TABLE PORTLET-->
             </div>
         </div>
+
+
     </div>
     <!-- END CONTENT BODY -->
     @include('admin.posts.modal')
@@ -78,84 +62,67 @@
 
 @section('script')
     <script language="javascript">
-
         // $.ajaxSetup : setup ms dùng đc ajax gửi dữ liệu trong laravel
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $(document).ready(function () {
-            //save posts khi click Save Change
-            $('#saveChangePost').click(function () {
-                // phải có để lấy update của CKEDITOR
-                for (instance in CKEDITOR.instances) {
-                    CKEDITOR.instances[instance].updateElement();
-                }
-                /*
-                * sử dụng formdata ms update được file
-                * */
-                var formData = new FormData();
-                formData.append('user_id',$('#user_id').val());
-                formData.append('title', $('#title').val());
-                formData.append('title_link', $('#title_link').val());
-                formData.append('content_post', $('#content_post').val());
-                formData.append('image', $('input[type=file]')[0].files[0]);
-                $.ajax({
-                    url: "{{ route('post.add') }}",
-                    type: "POST",
-                    dateType: "json",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: formData,
-                    success: function (result) {
-                        if(result.status){
-                            $('.error_post').removeClass('hidden');
-                            $('.error_post').text(result.message);
-                        }else{
-                            $(".postTable").append(result);
-                            $('.error_post').addClass('hidden');
-                            alert("Ajax Add thành công !!!");
-                            //ẩn modal khi thêm thành công
-                            $('.add_post').modal('hide');
-                        }
-                    }
-                });
-            });
 
-        });
-
-        function deletePost(id) {
-            confirmDeletePost = confirm("Bạn có chắc muốn xóa không")
-            if(!confirmDeletePost){
-                return false;
+        //save posts khi click Save Change
+        $(document).on('click', '#saveChangePost', function () {
+            // phải có để lấy update của CKEDITOR
+            for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
             }
+            /*
+            * sử dụng formdata ms update được file
+            * */
+            var formData = new FormData();
+            formData.append('user_id', $('#user_id').val());
+            formData.append('title', $('#title').val());
+            formData.append('title_link', $('#title_link').val());
+            formData.append('content_post', $('#content_post').val());
+            formData.append('image', $('input[type=file]')[0].files[0]);
             $.ajax({
-                url : "{{route('admin.posts.delete')}}",
-                type : "POST",
-                data : {id:id},
-                success : function (){
-                    $("#post_id_" + id).remove();
-                    alert("Bạn đã xóa thành công !");
+                url: "{{ route('post.add') }}",
+                type: "POST",
+                dateType: "json",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (result) {
+                    if (result.status) {
+                        $('.error_post').removeClass('hidden');
+                        $('.error_post').text(result.message);
+                    } else {
+                        $(".portlet-body").html(result);
+                        //init dataTable
+                        $('#sample_2').dataTable();
+                        $('.error_post').addClass('hidden');
+                        alert("Ajax Add thành công !!!");
+                        //ẩn modal khi thêm thành công
+                        $('.add_post').modal('hide');
+                    }
                 }
             });
-        }
+        });
 
         //open modal edit
         function openModalEdit(id) {
             $.ajax({
-                url : "{{route('admin.posts.open_edit_modal')}}",
-                type : "POST",
-                data : {id:id},
-                success : function (result){
+                url: "{{route('admin.posts.open_edit_modal')}}",
+                type: "POST",
+                data: {id: id},
+                success: function (result) {
                     $('#editPostModal').modal('show');
                     $('#modalEditContent').html(result);
                 }
             });
         }
 
-        function editPostInModal(){
+        function editPostInModal() {
             // phải có để lấy update của CKEDITOR
             for (instance in CKEDITOR.instances) {
                 CKEDITOR.instances[instance].updateElement();
@@ -170,28 +137,46 @@
             title_link = $("#editPost").find('input[name="title_link"]').val();
             content_post = $("#editPost").find('textarea[name="content_post"]').val();
 
-            formData.append('id',id);
+            formData.append('id', id);
             formData.append('title', title);
             formData.append('title_link', title_link);
             formData.append('content_post', content_post);
-            formData.append('image',  $("#editPost").find('input[type=file]')[0].files[0]);
+            formData.append('image', $("#editPost").find('input[type=file]')[0].files[0]);
             $.ajax({
-                url : "{{route('admin.posts.edit')}}",
+                url: "{{route('admin.posts.edit')}}",
                 type: "POST",
                 dateType: "json",
                 cache: false,
                 contentType: false,
                 processData: false,
                 data: formData,
-                success : function (result) {
-                    if(result.status){
+                success: function (result) {
+                    if (result.status) {
                         $('.error_post').removeClass('hidden');
                         $('.error_post').text(result.message);
-                    }else{
-                        $('#post_id_'+ id).replaceWith(result);
+                    } else {
+                        $(".portlet-body").html(result);
+                        //init dataTable
+                        $('#sample_2').dataTable();
                         alert("Edit thành công !!!");
                         $('#editPostModal').modal('hide');
                     }
+                }
+            });
+        }
+
+        function deletePost(id) {
+            confirmDeletePost = confirm("Bạn có chắc muốn xóa không")
+            if (!confirmDeletePost) {
+                return false;
+            }
+            $.ajax({
+                url: "{{route('admin.posts.delete')}}",
+                type: "POST",
+                data: {id: id},
+                success: function () {
+                    $("#post_id_" + id).remove();
+                    alert("Bạn đã xóa thành công !");
                 }
             });
         }

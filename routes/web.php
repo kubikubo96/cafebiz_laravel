@@ -10,11 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //Route login,logout Admin
+
+Route::get('edit-modal','UserController@getEditModal');
 
 Route::get('admin/login', 'UserController@getLoginAdmin');
 Route::post('admin/login', 'UserController@postLoginAdmin');
@@ -120,7 +119,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
  * Route homepage
  * */
 
-Route::get('homepage', 'Pages\PageController@homepage');
+Route::get('/', 'Pages\PageController@homepage');
 
 Route::get('login', 'Pages\PageController@getLogin');
 Route::post('login', 'Pages\PageController@postLogin');

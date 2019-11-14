@@ -2,7 +2,7 @@
 <div class="header" style="background-color: #343A40;  position: fixed;z-index: 10000;width: 100%;">
     <div class="container" style="padding: 0px;">
         <nav style="margin: 0;padding:0;" class="navbar navbar-expand-lg navbar-light bg-dark">
-            <a style="color:white;" class="navbar-brand" href="homepage">
+            <a style="color:white;" class="navbar-brand" href="">
                 <!--                    <i style="margin-left: 15px;" class="fa fa-home"-->
                 <!--                       aria-hidden="true"></i>-->
                 <img src="images/cafe.JPG" width="60px" height="30px"
@@ -17,28 +17,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li style="margin-left: 15px;" class="nav-item active">
-                        <a style="color:white; font-size: 13px;font-weight: bold; " class="nav-link" href="homepage">THỜI
+                        <a style="color:white; font-size: 13px;font-weight: bold; " class="nav-link" href="">THỜI
                             SỰ <span class="sr-only">(current)</span></a>
                     </li>
                     <li style="margin-left: 15px;" class="nav-item active">
-                        <a style="color:white;font-size: 13px;font-weight: bold;" class="nav-link" href="homepage">KINH TẾ
+                        <a style="color:white;font-size: 13px;font-weight: bold;" class="nav-link" href="">KINH TẾ
                             VĨ MÔ <span class="sr-only">(current)</span></a>
                     </li>
                     <li style="margin-left: 15px;" class="nav-item active">
-                        <a style="color:white;font-size: 13px;font-weight: bold;" class="nav-link" href="homepage">KINH
+                        <a style="color:white;font-size: 13px;font-weight: bold;" class="nav-link" href="">KINH
                             DOANH <span class="sr-only">(current)</span></a>
                     </li>
                     <li style="margin-left: 15px;" class="nav-item active">
-                        <a style="color:white;font-size: 13px;font-weight: bold;" class="nav-link" href="homepage">CÔNG
+                        <a style="color:white;font-size: 13px;font-weight: bold;" class="nav-link" href="">CÔNG
                             NGHỆ <span class="sr-only">(current)</span></a>
                     </li>
                     <li style="margin-left: 15px;" class="nav-item active">
-                        <a style="color:white;font-size: 13px;font-weight: bold;" class="nav-link" href="homepage">SỐNG
+                        <a style="color:white;font-size: 13px;font-weight: bold;" class="nav-link" href="">SỐNG
                             <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <div class="my-2 my-lg-0">
-                    @if(!isset(Auth::user()->name))
+                    @if(!isart(Auth::user()->name))
                         <a href="login" style="color:white; margin-right: 10px;font-size: 12px;font-weight: bold;text-decoration: none;">ĐĂNG NHẬP</a>
                         <a href="register" style="color:white; margin-right: 10px;font-size: 12px;font-weight: bold;text-decoration: none;">ĐĂNG KÝ</a>
                     @else

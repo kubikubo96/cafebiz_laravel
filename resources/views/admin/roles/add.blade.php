@@ -12,7 +12,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="container-fluid" style="text-align: left;">
                         <div class="row">
                             <div class="col-lg-12">

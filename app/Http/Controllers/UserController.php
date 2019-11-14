@@ -9,13 +9,20 @@ use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Repositories\User\UserRepository;
 
 class UserController extends Controller
 {
-    //
-    function __construct()
+
+    protected $userRepository;
+
+    function __construct(UserRepository $userRepository)
     {
-        $rolesForAddUser = Role::all()->where('title', '!=', 'root');;
+
+        $this->userRepository = $userRepository;
+
+        $rolesForAddUser = Role::all()->where('title', '!=', 'root');
+
         view()->share('rolesForAddUser', $rolesForAddUser);
     }
 
@@ -23,38 +30,29 @@ class UserController extends Controller
     {
         $this->authorize('view-user');
 
-        $user = User::all()->where('name', '!=', 'root');
+        $user = $this->userRepository->getAll()->where('name', '!=', 'root');
 
         return view('admin.users.index', ['user' => $user]);
     }
 
     function postAdd(Request $request)
     {
-        if (!empty($request->name) || empty($request->email) || empty($request->password) ||
+        if ( empty($request->name) || empty($request->email) || empty($request->password) ||
             ($request->confirm_password != $request->password)) {
             return ['status' => 1, 'message' => 'Add user thất bại !!'];
         }
-        $user = new User;
-        $user->name = $request->name;
-        $user->role_id = $request->role_id;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->admin = $request->admin;
+        $this->userRepository->create_user($request);
 
-        $user->save();
+        $user = $this->userRepository->getAll();
 
-        return view('admin.users.row_user', [
-            'u' => $user,
-        ]);
+        return view('admin.users.row_user',compact('user'));
 
     }
 
     function openEditModalUser(Request $request)
     {
+        $user = $this->userRepository->openEditModal_user($request);
 
-        $data = $request->all();
-        $id = $data['id'];
-        $user = User::find($id);
         return view('admin.users.edit', compact('user'));
     }
 
@@ -63,22 +61,16 @@ class UserController extends Controller
         if ($request->password != $request->confirm_password) {
             return ['status' => 1, 'message' => 'confirm_password khác password !'];
         }
-        $user = User::find($request->id);
-        $user->name = $request->name;
+        $this->userRepository->userEditRepo($request);
 
-        if ($request->password != null) {
-            $user->password = bcrypt($request->password);
-        }
-        $user->save();
+        $user = $this->userRepository->getAll();
 
-        return view('admin.users.row_user', [
-            'u' => $user,
-        ]);
+        return view('admin.users.row_user',compact('user'));
     }
 
     function postDelete(Request $request)
     {
-        $user = User::find($request->id);
+        $user = $this->userRepository->find($request->id);
         $user->delete();
 
         return redirect('admin/users');

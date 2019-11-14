@@ -4,16 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Permission;
+use App\Repositories\Permission\PermissionRepository;
 
 class PermissionController extends Controller
 {
     //
+    public function __construct(PermissionRepository $permissionRepository)
+    {
+        $this->permissionRepository = $permissionRepository;
+    }
+
     public function getAll()
     {
         $this->authorize('root');
 
-        $permssions = Permission::all();
-        return view('admin.permissions.index', compact('permssions'));
+        $permissions = $this->permissionRepository->getAll();
+
+        return view('admin.permissions.index', compact('permissions'));
     }
 
     public function postAdd(Request $request)
@@ -21,36 +28,34 @@ class PermissionController extends Controller
         if (empty($request->name)) {
             return ['status' => 1, 'message' => 'Add user thất bại !!'];
         }
-        $permission = new Permission;
-        $permission->title= $request->title;
-        $permission->name = $request->name;
 
-        $permission->save();
+        $this->permissionRepository->create_permission($request);
+
+        $permissions = $this->permissionRepository->getAll();
 
         return view('admin.permissions.row_permission', [
-            'permission' => $permission,
+            'permissions' => $permissions,
         ]);
     }
 
     public function openEditModalPermission(Request $request)
     {
-        $data = $request->all();
-        $id = $data['id'];
-        $permission = Permission::find($id);
+        $permission = $this->permissionRepository->openEditModal_permission($request);
+
         return view('admin.permissions.edit', compact('permission'));
     }
 
-    public function postEdit(Request $request){
-        if(empty($request->name) || empty($request->title)){
+    public function postEdit(Request $request)
+    {
+        if (empty($request->name) || empty($request->title)) {
             return ['status' => 1, 'message' => 'permission không được để trống !'];
         }
-        $permission = Permission::find($request->id);
-        $permission->title = $request->title;
-        $permission->name = $request->name;
 
-        $permission->save();
+        $this->permissionRepository->permissionEditRepo($request);
 
-        return view('admin.permissions.row_permission',compact('permission'));
+        $permissions = $this->permissionRepository->getAll();
+
+        return view('admin.permissions.row_permission', compact('permissions'));
     }
 
 

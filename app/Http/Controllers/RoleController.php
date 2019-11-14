@@ -6,12 +6,16 @@ use App\Role;
 use App\Permission;
 use Illuminate\Http\Request;
 use App\Permission_Roles;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\Role\RoleRepository;
 
 class RoleController extends Controller
 {
     //
-    function __construct()
+    function __construct(RoleRepository $roleRepository)
     {
+        $this->roleRepository = $roleRepository;
+
         $permissionForRole = Permission::all();
         view()->share('permissionForRole', $permissionForRole);
     }
@@ -20,7 +24,8 @@ class RoleController extends Controller
     {
         $this->authorize('root');
 
-        $roles = Role::all();
+        $roles = $this->roleRepository->getAll();
+
         return view('admin.roles.index', compact('roles'));
     }
 
@@ -29,54 +34,46 @@ class RoleController extends Controller
         if (empty($request->title)) {
             return ['status' => 1, 'message' => 'Add role thất bại !!'];
         }
-        $role = new Role;
-        $role->title = $request->title;
-        $role->save();
 
-        //lấy mảng id permission được truyền lên Request
-        $arr_permission_ids = isset($request->my_multi_select1) ? $request->my_multi_select1 : array();
+        $this->roleRepository->create_role($request);
 
-        foreach ($arr_permission_ids as $id) {
-            $permissionRole = new Permission_Roles;
+        $roles = $this->roleRepository->getAll();
 
-            $permissionRole->permission_id = $id;
-
-            $permissionRole->role_id = $role->id;
-
-            $permissionRole->save();
-
-        }
-
-        return view('admin.roles.row_role', [
-            'role' => $role,
-        ]);
+        return view('admin.roles.row_role',compact('roles'));
     }
 
     public function openEditModalRole(Request $request)
     {
-        $data = $request->all();
-        $id = $data['id'];
-        $role = Role::find($id);
-        return view('admin.roles.edit', compact('role'));
+        $role = $this->roleRepository->openEditModal_role($request);
+
+        $id_permissions = array();
+
+        $i=0;
+        foreach ($role->permissions as $permissions)
+        {
+            $id_permissions[$i] = $permissions->id;
+            $i++;
+        }
+        return view('admin.roles.edit', compact('role','id_permissions'));
     }
 
     public function postEdit(Request $request)
     {
-        if (empty($request->title)) {
-            return ['status' => 1, 'message' => 'roleTitle không được để trống !'];
-        }
-        $role = Role::find($request->id);
-        $role->title = $request->title;
+        $role = $this->roleRepository->find($request->id);
 
-        $role->save();
+        DB::table('permission_roles')->where('role_id',$role->id)->delete();
 
-        return view('admin.roles.row_role', compact('role'));
+        $role->permissions()->attach($request->my_multi_select1);
+
+        $roles = $this->roleRepository->getAll();
+
+        return view('admin.roles.row_role', compact('roles'));
     }
 
 
     public function postDelete(Request $request)
     {
-        $user = Role::find($request->id);
+        $user = $this->roleRepository->find($request->id);
         $user->delete();
 
         return redirect('admin/roles');

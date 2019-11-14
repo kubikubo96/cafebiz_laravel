@@ -14,7 +14,7 @@ class CommentController extends Controller
 
     public function getComment()
     {
-        $comment = Comment::all();
+        $comment = Comment::with('user','post')->get();
         return view('admin.comments.index', ['comment' => $comment]);
     }
 

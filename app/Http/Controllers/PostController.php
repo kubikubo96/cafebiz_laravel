@@ -7,6 +7,7 @@ use App\Post;
 use App\Repositories\Post\PostRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 Use App\Jobs\SendPostEmail;
+
 class PostController extends Controller
 {
     /**1
@@ -35,26 +36,12 @@ class PostController extends Controller
             return ['status' => 1, 'message' => 'Add Post thất bại, các trường không được để trống !!'];
         }
 
-        $pt = $this->postRepository->create_post($request);
+        $this->postRepository->create_post($request);
+
+        $post = $this->postRepository->getAll();
 
         //compact : Truyền dữ liệu ra View
-        return view('admin.posts.row_post', compact('pt'));
-    }
-
-    public function postDelete(Request $request)
-    {
-        //quyền chỉ author ms được delete
-        $this->authorize('view-post');
-
-        $post = Post::find($request->id);
-
-        //quyền author chỉ được delete những bài viết của mình
-        $this->authorize($post,'postDelete');
-
-        $this->postRepository->delete($request->id);
-
-        return redirect('admin/posts');
-
+        return view('admin.posts.row_post', compact('post'));
     }
 
     public function openEditModal(Request $request)
@@ -63,16 +50,16 @@ class PostController extends Controller
         //quyền chỉ author mới sữa được posts
         $this->authorize('view-post');
 
-        $post = Post::find($request->id);
+        $post = $this->postRepository->find($request->id);
 
-          //quyền author chỉ được edit những bài viết của mình
-        $this->authorize($post,'openEditModal');
+        //quyền author chỉ được edit những bài viết của mình
+        $this->authorize($post, 'openEditModal');
 
 
         $post = $this->postRepository->openEditModal_post($request);
 
 
-        return view('admin.posts.edit',compact('post'));
+        return view('admin.posts.edit', compact('post'));
     }
 
     public function postEdit(Request $request)
@@ -82,8 +69,26 @@ class PostController extends Controller
             return ['status' => 1, 'message' => 'Edit Post thất bại, các trường không được để trống !!'];
         }
 
-        $pt = $this->postRepository->postEditRepo($request);
+        $this->postRepository->postEditRepo($request);
 
-        return view('admin.posts.row_post', compact ('pt'));
+        $post= $this->postRepository->getAll();
+
+        return view('admin.posts.row_post', compact('post'));
+    }
+
+    public function postDelete(Request $request)
+    {
+        //quyền chỉ author ms được delete
+        $this->authorize('view-post');
+
+        $post = $this->postRepository->find($request->id);
+
+        //quyền author chỉ được delete những bài viết của mình
+        $this->authorize($post, 'postDelete');
+
+        $this->postRepository->delete($request->id);
+
+        return redirect('admin/posts');
+
     }
 }
