@@ -18,6 +18,11 @@ class PermissionRepository extends EloquentRepository
         return \App\Permission::class;
     }
 
+    public function getAll()
+    {
+        return \App\Permission::with('roles','permission_roles')->get();
+    }
+
     //xử lý postAdd bên PermissionController
     public function create_permission($attributes)
     {

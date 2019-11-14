@@ -17,6 +17,13 @@ class CommentRepository extends EloquentRepository
         return \App\Comment::class;
     }
 
+    public function getAll()
+    {
+        $comment = \App\Comment::with('user', 'post')->get();
+
+        return $comment;
+    }
+
     //xử lý postAdd bên UserController
     public function create_comment($attributes)
     {
@@ -37,13 +44,6 @@ class CommentRepository extends EloquentRepository
 
         return $result;
 
-    }
-
-    public function getAllComment()
-    {
-        $comment = \App\Comment::with('user', 'post')->get();
-
-        return $comment;
     }
 
 }

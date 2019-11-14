@@ -19,6 +19,13 @@ class RoleRepository extends EloquentRepository
         return \App\Role::class;
     }
 
+    public function getAll()
+    {
+        $roles = \App\Role::with('permissions', 'users', 'permission_roles')->get();
+
+        return $roles;
+    }
+
     //xử lý postAdd bên RoleController
     public function create_role($attributes)
     {

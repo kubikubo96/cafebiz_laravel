@@ -3,6 +3,7 @@
 namespace App\Repositories\User;
 
 use App\Repositories\EloquentRepository;
+use App\Role;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,13 @@ class UserRepository extends EloquentRepository
         return \App\User::class;
     }
 
+    function getAll()
+    {
+        $user = \App\User::with('comments', 'posts', 'role')
+            ->where('name', '!=', 'root')->get();
+        return $user;
+    }
+
     //xử lý postAdd bên UserController
     public function create_user($attributes)
     {
@@ -26,9 +34,9 @@ class UserRepository extends EloquentRepository
         $data['email'] = $attributes->email;
         $data['password'] = bcrypt($attributes->password);
 
-        if(!empty($attributes->admin)){
+        if (!empty($attributes->admin)) {
             $data['admin'] = $attributes->admin;
-        }else{
+        } else {
             $data['admin'] = 0;
         }
 
@@ -59,11 +67,18 @@ class UserRepository extends EloquentRepository
             $attributes->password = bcrypt($attributes->password);
         }
 
-        $result = $this->update( $data['id'],$data);
+        $result = $this->update($data['id'], $data);
 
         return $result;
 
 
+    }
+
+    function getRolesForAddUser()
+    {
+        $rolesForAddUser = Role::with('permissions', 'users', 'permission_roles')
+            ->where('title', '!=', 'root')->get();
+        return $rolesForAddUser;
     }
 
 }

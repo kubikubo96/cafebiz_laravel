@@ -21,7 +21,7 @@ class UserController extends Controller
 
         $this->userRepository = $userRepository;
 
-        $rolesForAddUser = Role::all()->where('title', '!=', 'root');
+        $rolesForAddUser = $this->userRepository->getRolesForAddUser();
 
         view()->share('rolesForAddUser', $rolesForAddUser);
     }
@@ -30,14 +30,14 @@ class UserController extends Controller
     {
         $this->authorize('view-user');
 
-        $user = $this->userRepository->getAll()->where('name', '!=', 'root');
+        $user = $this->userRepository->getAll();
 
         return view('admin.users.index', ['user' => $user]);
     }
 
     function postAdd(Request $request)
     {
-        if ( empty($request->name) || empty($request->email) || empty($request->password) ||
+        if (empty($request->name) || empty($request->email) || empty($request->password) ||
             ($request->confirm_password != $request->password)) {
             return ['status' => 1, 'message' => 'Add user thất bại !!'];
         }
@@ -45,7 +45,7 @@ class UserController extends Controller
 
         $user = $this->userRepository->getAll();
 
-        return view('admin.users.row_user',compact('user'));
+        return view('admin.users.row_user', compact('user'));
 
     }
 
@@ -65,7 +65,7 @@ class UserController extends Controller
 
         $user = $this->userRepository->getAll();
 
-        return view('admin.users.row_user',compact('user'));
+        return view('admin.users.row_user', compact('user'));
     }
 
     function postDelete(Request $request)
@@ -85,7 +85,7 @@ class UserController extends Controller
     public function postLoginAdmin(Request $request)
     {
         $this->validate($request, [
-            'email' =>'required',
+            'email' => 'required',
             'password' => 'required',
         ], [
             'email.required' => 'Bạn chưa nhập Email !',

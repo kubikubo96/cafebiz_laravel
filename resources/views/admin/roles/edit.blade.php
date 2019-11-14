@@ -1,5 +1,5 @@
 <!-- /.col-lg-12 -->
-<div class="col-md-12" style="padding: 10px 100px 0 20px;">
+<div class="col-md-12" style="padding: 10px 30px 0 20px;">
     <input type="hidden" name="id" value="{{$role->id}}"/>
     @csrf
     <div class="row">

@@ -69,31 +69,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END THEME LAYOUT STYLES -->
     @yield('css')
     <link rel="shortcut icon" href="favicon.ico"/>
-    <style type="text/css">
-        .dt-buttons{
-            display: none;
-        }
 
-        #sample_2_paginate {
-            float: right!important;
-            text-align: right!important;
-        }
-        .dataTables_extended_wrapper .table.dataTable {
-             margin: 0!important;
-        }
-        .dataTables_extended_wrapper {
-            margin-top: 0!important;
-        }
-        #sample_2_filter label input{
-            width: 123px!important;
-            height: 35px!important;
-        }
-
-        #sample_2_wrapper #row #col-md-12{
-            min-height: 0!important;
-        }
-
-    </style>
+    <link href="admin_asset/css/style.css" rel="stylesheet" type="text/css"/>
 
 </head>
 

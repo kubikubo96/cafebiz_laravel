@@ -15,7 +15,7 @@
                     <div class="container-fluid" style="text-align: left;">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header" style="margin: 0;">Roles
+                                <h1 class="page-header" style="margin: 0; border: 0px;">Roles
                                     <small>Add</small>
                                 </h1>
                             </div>

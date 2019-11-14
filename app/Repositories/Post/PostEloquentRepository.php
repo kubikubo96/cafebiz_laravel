@@ -17,6 +17,10 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
         return \App\Post::class;
     }
 
+    public function getAll(){
+        return \App\Post::with('comment','user')->get();
+    }
+
     //xử lý postAdd bên PostController
     public function create_post($attributes)
     {

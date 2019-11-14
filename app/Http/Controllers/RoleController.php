@@ -29,6 +29,33 @@ class RoleController extends Controller
         return view('admin.roles.index', compact('roles'));
     }
 
+    public function openEditModalRole(Request $request)
+    {
+        $role = $this->roleRepository->openEditModal_role($request);
+
+        $id_permissions = array();
+
+        $i = 0;
+        foreach ($role->permissions as $permissions) {
+            $id_permissions[$i] = $permissions->id;
+            $i++;
+        }
+        return view('admin.roles.edit', compact('role', 'id_permissions'));
+    }
+
+    public function postEdit(Request $request)
+    {
+        $role = $this->roleRepository->find($request->id);
+
+        DB::table('permission_roles')->where('role_id', $role->id)->delete();
+
+        $role->permissions()->attach($request->my_multi_select1);
+
+        $roles = $this->roleRepository->getAll();
+
+        return view('admin.roles.row_role', compact('roles'));
+    }
+
     public function postAdd(Request $request)
     {
         if (empty($request->title)) {
@@ -60,33 +87,6 @@ class RoleController extends Controller
         return view('admin.roles.row_role', compact('roles'));
     }
 
-    public function openEditModalRole(Request $request)
-    {
-        $role = $this->roleRepository->openEditModal_role($request);
-
-        $id_permissions = array();
-
-        $i = 0;
-        foreach ($role->permissions as $permissions) {
-            $id_permissions[$i] = $permissions->id;
-            $i++;
-        }
-        return view('admin.roles.edit', compact('role', 'id_permissions'));
-    }
-
-    public function postEdit(Request $request)
-    {
-        $role = $this->roleRepository->find($request->id);
-
-        DB::table('permission_roles')->where('role_id', $role->id)->delete();
-
-        $role->permissions()->attach($request->my_multi_select1);
-
-        $roles = $this->roleRepository->getAll();
-
-        return view('admin.roles.row_role', compact('roles'));
-    }
-
 
     public function postDelete(Request $request)
     {
@@ -95,4 +95,6 @@ class RoleController extends Controller
 
         return redirect('admin/roles');
     }
+
+
 }

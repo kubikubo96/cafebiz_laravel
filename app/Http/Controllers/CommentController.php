@@ -24,7 +24,7 @@ class CommentController extends Controller
 
     public function getComment()
     {
-        $comment = $this->commentRepository->getAllComment();
+        $comment = $this->commentRepository->getAll();
 
         return view('admin.comments.index', ['comment' => $comment]);
     }
