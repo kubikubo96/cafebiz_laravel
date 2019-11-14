@@ -5,12 +5,8 @@
     <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php" line="47" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daa2a75f-fc65-48bd-973e-d6bbc6b9d90d" name="Default Changelist" comment="1">
+    <list default="true" id="daa2a75f-fc65-48bd-973e-d6bbc6b9d90d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pages/pageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Pages/pageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/User/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/User/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,15 +32,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-60" />
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,7 +43,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>href</find>
       <find>toggler</find>
       <find>ti-select.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</find>
       <find>pts/app.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</find>
@@ -85,6 +72,7 @@
       <find>login</find>
       <find>homepage</find>
       <find>logout</find>
+      <find>$hotnews2</find>
     </findStrings>
     <replaceStrings>
       <replace>user_id</replace>
@@ -99,7 +87,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SendMailController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/login/forgotpassword.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/login/forgot_password.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/appcrud/forgot_password.blade.php" />
@@ -150,6 +137,7 @@
         <option value="$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php" />
         <option value="$PROJECT_DIR$/app/Repositories/User/UserRepository.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Pages/PageController.php" />
+        <option value="$PROJECT_DIR$/resources/views/pages/index.blade.php" />
       </list>
     </option>
   </component>
@@ -420,7 +408,7 @@
       <workItem from="1573524333714" duration="5780000" />
       <workItem from="1573534418218" duration="14218000" />
       <workItem from="1573575127239" duration="5552000" />
-      <workItem from="1573697433225" duration="21981000" />
+      <workItem from="1573697433225" duration="22230000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1573313987307</created>
@@ -464,15 +452,21 @@
       <option name="project" value="LOCAL" />
       <updated>1573722073401</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="1">
+      <created>1573724296693</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1573724296693</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170296000" />
+    <option name="totallyTimeSpent" value="170545000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1380" height="735" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28484848" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -878,16 +872,6 @@
     <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Pages/PageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
-          <folding>
-            <element signature="e#46#82#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Repositories/User/UserRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -917,7 +901,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pages/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60" />
+        <state relative-caret-position="120">
+          <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+          <folding>
+            <element signature="e#537#573#0#HTML" expanded="true" />
+            <element signature="e#1192#1212#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Pages/PageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#46#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
