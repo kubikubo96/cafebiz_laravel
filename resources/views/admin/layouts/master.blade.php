@@ -86,8 +86,13 @@ License: You must have a valid license purchased only from themeforest(the above
         }
         #sample_2_filter label input{
             width: 123px!important;
-            height: 23px!important;
+            height: 35px!important;
         }
+
+        #sample_2_wrapper #row #col-md-12{
+            min-height: 0!important;
+        }
+
     </style>
 
 </head>

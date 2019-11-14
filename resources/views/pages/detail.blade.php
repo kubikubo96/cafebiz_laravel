@@ -41,6 +41,7 @@
                                               role="form">
                                             <meta name="csrf-token" content="{{ csrf_token() }}">
                                             @csrf
+                                            <input type="hidden" id="id_user" value="{{Auth::id()}}" />
                                             <input type="hidden" id="id_post" value="{{$post->id}}"/>
                                             <div class="form-group">
                                                 <textarea class="form-control" name="content_comment" id="content_comment" rows="3"></textarea>
@@ -84,6 +85,7 @@
         function addComment(){
             var data = {
                 id_post: $('#id_post').val(),
+                id_user: $('#id_user').val(),
                 content_comment: $('#content_comment').val(),
             }
 

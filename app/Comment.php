@@ -13,6 +13,8 @@ class Comment extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $fillable = ['post_id','user_id','content_comment'];
+
     public function post(){
         return $this->belongsTo(Post::class,'post_id','id');
     }
