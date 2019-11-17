@@ -69,7 +69,7 @@
             var data = {
                 title: $('#title').val(),
                 name: $('#name').val(),
-            }
+            };
             $.ajax({
                 url: "{{route('admin.permissions.add')}}",
                 type: "post",
@@ -77,8 +77,7 @@
                 data: data,
                 success: function (result) {
                     if (result.status) {
-                        $('.error_user').removeClass('hidden');
-                        $('.error_user').text(result.message);
+                        toastr.warning('Add permission thất bại !!!');
                     } else {
                         $('.error_user').removeClass('hidden');
                         $(".portlet-body").html(result);

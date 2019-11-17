@@ -55,7 +55,6 @@ class UserController extends Controller
         $user = $this->userRepository->getAll();
 
         return view('admin.users.row_user', compact('user'));
-
     }
 
     function openEditModalUser(Request $request)
@@ -67,8 +66,8 @@ class UserController extends Controller
 
     function postEdit(Request $request)
     {
-        if ($request->password != $request->confirm_password) {
-            return ['status' => 1, 'message' => 'confirm_password khác password !'];
+        if (empty($request->name) || ($request->password != $request->confirm_password)) {
+            return ['status' => 1, 'message' => 'Edit thất bại! '];
         }
         $this->userRepository->userEditRepo($request);
 
@@ -117,5 +116,4 @@ class UserController extends Controller
         Auth::logout();
         return redirect('admin/login');
     }
-
 }

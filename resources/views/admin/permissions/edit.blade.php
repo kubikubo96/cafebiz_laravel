@@ -10,10 +10,10 @@
         </div>
         <div class="form-group">
             <label style="font-weight: bold;">Name</label>
-            <input class="form-control" name="name" value="{{$permission->name}}"/>
+            <input disabled class="form-control" name="name" value="{{$permission->name}}"/>
         </div>
         <div style="margin-top: 20px;">
-            <p class="error_user text-danger hidden"></p>
+            <p class="error_permission text-danger hidden"></p>
         </div>
     </form>
 </div>

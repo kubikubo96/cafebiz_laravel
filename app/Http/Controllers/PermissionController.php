@@ -25,7 +25,7 @@ class PermissionController extends Controller
     public function postAdd(Request $request)
     {
         if (empty($request->name) || empty($request->title)) {
-            return ['status' => 1, 'message' => 'Add permission thất bại !!'];
+            return ['status' => 1];
         }
         $this->permissionRepository->create_permission($request);
 
@@ -45,7 +45,7 @@ class PermissionController extends Controller
 
     public function postEdit(Request $request)
     {
-        if (empty($request->name) || empty($request->title)) {
+        if (empty($request->title)) {
             return ['status' => 1, 'message' => 'permission không được để trống !'];
         }
 
