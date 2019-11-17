@@ -87,8 +87,8 @@ class RoleController extends Controller
     {
         $role = $this->roleRepository->find($request->id);
         $role->delete();
-        $roles = $this->roleRepository->getAll();
 
+        $roles = $this->roleRepository->getAll();
         return view('admin.roles.row_role', compact('roles'));
     }
 
