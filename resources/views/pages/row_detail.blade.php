@@ -1,10 +1,10 @@
-<div class="col-md-12">
-    @if(isset($error_comment))
+@if(isset($error_comment))
+    <div class="col-md-12">
         <div class="alert alert-danger">
             {{$error_comment}}
         </div>
-    @endif
-</div>
+    </div>
+@endif
 <!-- Posted Comments -->
 @foreach($post->comment as $cm)
     <div class="col-md-12">
