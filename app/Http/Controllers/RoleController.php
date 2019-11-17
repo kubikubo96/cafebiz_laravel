@@ -12,7 +12,7 @@ use App\Repositories\Permission\PermissionRepository;
 class RoleController extends Controller
 {
     //
-    function __construct(RoleRepository $roleRepository,PermissionRepository $permissionRepository)
+    function __construct(RoleRepository $roleRepository, PermissionRepository $permissionRepository)
     {
         $this->roleRepository = $roleRepository;
         $this->PermissionRepository = $permissionRepository;
@@ -49,8 +49,10 @@ class RoleController extends Controller
     {
         $role = $this->roleRepository->find($request->id);
 
-        DB::table('permission_roles')->where('role_id', $role->id)->delete();
+        //xóa tất cả permission_id thuộc $role trong bảng permission_roles
+        $role->permissions()->detach();
 
+        //thêm tất cả permission_id = $request->my_multi_select1 thuộc $role vào bảng permission
         $role->permissions()->attach($request->my_multi_select1);
 
         $roles = $this->roleRepository->getAll();
