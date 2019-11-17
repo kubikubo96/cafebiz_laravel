@@ -103,7 +103,7 @@ class UserController extends Controller
             'email.required' => 'Bạn chưa nhập Email !',
             'password.required' => 'Bạn chưa nhập Password !'
         ]);
-
+        //Auth::attempt :  kiểm tra đăng nhập
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
             return redirect('admin');
