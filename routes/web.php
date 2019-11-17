@@ -75,6 +75,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
      * */
 
     Route::get('comments', 'CommentController@getComment');
+
     Route::post('comments/delete', 'CommentController@postDelete')->name('admin.comments.delete');
 
     /*
@@ -137,4 +138,4 @@ Route::post('user_personal/{id}', 'Pages\PageController@postUserPersonal');
 
 Route::get('detail/{id}/{title_link}.html', 'Pages\PageController@getDetail');
 
-Route::post('comments', 'CommentController@postComment')->name('comments');
+Route::post('add-comments', 'CommentController@postComment')->name('comments.add_comments');

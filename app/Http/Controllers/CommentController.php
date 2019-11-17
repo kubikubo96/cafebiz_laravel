@@ -21,14 +21,18 @@ class CommentController extends Controller
     public function getComment()
     {
         $comment = $this->commentRepository->getAll();
+
         return view('admin.comments.index', ['comment' => $comment]);
     }
 
     public function postComment(Request $request)
     {
         $comment = $this->commentRepository->create_comment($request);
+
+        $post = $comment->post;
+
         return view('pages.row_detail', [
-            'cm' => $comment,
+            'post' => $post,
         ]);
 
     }

@@ -41,25 +41,22 @@
                                               role="form">
                                             <meta name="csrf-token" content="{{ csrf_token() }}">
                                             @csrf
-                                            <input type="hidden" id="id_user" value="{{Auth::id()}}" />
+                                            <input type="hidden" id="id_user" value="{{Auth::id()}}"/>
                                             <input type="hidden" id="id_post" value="{{$post->id}}"/>
                                             <div class="form-group">
-                                                <textarea class="form-control" name="content_comment" id="content_comment" rows="3"></textarea>
+                                                <textarea class="form-control" name="content_comment"
+                                                          id="content_comment" rows="3"></textarea>
                                             </div>
-                                            <button type="button" onclick="addComment()" class="btn btn-dark">Comment</button>
+                                            <button type="button" onclick="addComment()" class="btn btn-dark">Comment
+                                            </button>
                                         </form>
                                     @endif
                                 </div>
                             </div>
                         </div>
-                        <!-- Posted Comments -->
-                        @foreach($post->comment as $cm)
-                            <div class="col-md-12">
-                                <div class="row" id="contentComment">
-                                    @include('pages.row_detail',['cm'=>$cm])
-                                </div>
-                            </div>
-                        @endforeach
+                    </div>
+                    <div class="row" id="contentComment">
+                        @include('pages.row_detail')
                     </div>
                 </div>
                 <div class="col-md-3 cc" style="text-align: center;margin-top: 30px;">
@@ -82,7 +79,7 @@
         });
 
         //add comment
-        function addComment(){
+        function addComment() {
             var data = {
                 id_post: $('#id_post').val(),
                 id_user: $('#id_user').val(),
@@ -90,12 +87,12 @@
             }
 
             $.ajax({
-                url:"{{route('comments')}}",
+                url: "{{route('comments.add_comments')}}",
                 type: "post",
                 dataType: "text",
-                data:data,
-                success: function(result){
-                    $("#contentComment").append(result);
+                data: data,
+                success: function (result) {
+                    $("#contentComment").html(result);
                 }
             });
         }
