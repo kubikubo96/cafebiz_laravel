@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Permission_Roles;
-use Illuminate\Support\Facades\DB;
 use App\Repositories\Role\RoleRepository;
 use App\Repositories\Permission\PermissionRepository;
 
