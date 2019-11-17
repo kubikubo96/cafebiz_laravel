@@ -50,7 +50,6 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()->all()]);
         }
-
         $this->userRepository->create_user($request);
 
         $user = $this->userRepository->getAll();
@@ -106,6 +105,7 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+
             return redirect('admin');
         } else {
             return redirect('admin/login')->with('notify', 'Đăng nhập không thành công !!');
