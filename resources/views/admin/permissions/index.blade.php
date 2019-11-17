@@ -5,8 +5,6 @@
     <div class="page-content">
         <!-- BEGIN PAGE HEADER-->
 
-    @include('admin.layouts.theme_panel')
-
     <!-- BEGIN PAGE BAR -->
         <div class="page-bar">
             <ul class="page-breadcrumb">
