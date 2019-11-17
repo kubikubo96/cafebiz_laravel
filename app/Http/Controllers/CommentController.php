@@ -27,6 +27,14 @@ class CommentController extends Controller
 
     public function postComment(Request $request)
     {
+        if (empty($request->content_comment)) {
+            $post = $this->postRepository->find($request->id_post);
+
+            return view('pages.row_detail', [
+                'post' => $post,
+                'error_comment' => 'Bạn chưa nhập comment!'
+            ]);
+        }
         $comment = $this->commentRepository->create_comment($request);
 
         $post = $comment->post;

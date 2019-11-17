@@ -13,7 +13,8 @@ use App\Repositories\User\UserRepository;
 class pageController extends Controller
 {
     //
-    public function __construct(UserRepository $userRepository, PostEloquentRepository $postEloquentRepository)
+    public function __construct(UserRepository $userRepository,
+                                PostEloquentRepository $postEloquentRepository)
     {
         $this->userRepository = $userRepository;
         $this->postRepository = $postEloquentRepository;
@@ -21,11 +22,8 @@ class pageController extends Controller
 
     function homepage()
     {
-
         $post = $this->postRepository->postPaginate();
-
         $hotnews = $this->postRepository->postHotNews();
-
         $hotnews2 = $this->postRepository->postHotNews2();
 
         return view('pages.index', ['post' => $post, 'hotnews' => $hotnews, 'hotnews2' => $hotnews2]);
@@ -48,7 +46,6 @@ class pageController extends Controller
             ]);
         //Auth::attempt :  kiểm tra đăng nhập
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-
             return redirect('/');
         } else {
             return redirect('login')->with('notify', 'Đăng nhập không thành công :(');
@@ -91,9 +88,7 @@ class pageController extends Controller
 
     function getUserPersonal($id)
     {
-
         $user = $this->userRepository->find($id);
-
         return view('pages.appcrud.edit', ['user' => $user]);
     }
 
@@ -105,13 +100,11 @@ class pageController extends Controller
             ], [
                 'name.required' => 'Bạn chưa nhập tên người dùng',
             ]);
-
         $user = $this->userRepository->find($id);
 
         $user->name = $request->name;
 
         if ($request->changePassword == "on") {
-
             $this->validate($request,
                 [
                     'password' => 'required',
@@ -123,7 +116,6 @@ class pageController extends Controller
                 ]);
             $user->password = bcrypt($request->password);
         }
-
         $user->save();
 
         return redirect('user_personal/' . $id)->with('notify', 'Bạn đã sữa thành công');
@@ -132,7 +124,6 @@ class pageController extends Controller
     function getDetail($id)
     {
         $post = $this->postRepository->find($id);
-
         return view('pages.detail', ['post' => $post]);
     }
 
@@ -143,19 +134,12 @@ class pageController extends Controller
 
     public function postForgotPassword(Request $request)
     {
-
         $yourMail = $request->email;
-
         $yourUser = DB::table('users')->where('email', $yourMail)->first();
-
         $yourID = $yourUser->id;
-
         $user = $this->userRepository->find($yourID);
-
         $passwordReset = str::random(10);
-
         $user->password = bcrypt($passwordReset);
-
         $user->save();
 
         $details = [
