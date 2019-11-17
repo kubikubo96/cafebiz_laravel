@@ -2,10 +2,7 @@
 
 namespace App\Repositories\Permission;
 
-use App\Permission_Roles;
 use App\Repositories\EloquentRepository;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class PermissionRepository extends EloquentRepository
 {
@@ -27,10 +24,8 @@ class PermissionRepository extends EloquentRepository
     public function create_permission($attributes)
     {
         $data = array();
-
         $data['title'] = $attributes->title;
         $data['name'] = $attributes->name;
-
         $result = $this->create($data);
 
         return $result;

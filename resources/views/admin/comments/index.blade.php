@@ -72,7 +72,7 @@
                     $(".portlet-body").html(result);
                     //init dataTable
                     $('#sample_2').dataTable();
-                    alert("Bạn đã xóa thành công !");
+                    toastr.success('Bạn đã xóa thành công !!!');
                 }
             });
         }

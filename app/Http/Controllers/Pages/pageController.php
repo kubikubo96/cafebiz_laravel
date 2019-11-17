@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
-use App\Post;
 use App\Repositories\Post\PostEloquentRepository;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use Mail;
 use App\Repositories\User\UserRepository;
 
 class pageController extends Controller

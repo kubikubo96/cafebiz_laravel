@@ -3,8 +3,6 @@
 namespace App\Repositories\Post;
 
 use App\Repositories\EloquentRepository;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class PostEloquentRepository extends EloquentRepository implements PostRepositoryInterface
 {

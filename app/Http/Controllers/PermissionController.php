@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Permission;
 use App\Repositories\Permission\PermissionRepository;
 
 class PermissionController extends Controller
@@ -28,7 +27,6 @@ class PermissionController extends Controller
         if (empty($request->name) || empty($request->title)) {
             return ['status' => 1, 'message' => 'Add permission thất bại !!'];
         }
-
         $this->permissionRepository->create_permission($request);
 
         $permissions = $this->permissionRepository->getAll();
@@ -61,7 +59,7 @@ class PermissionController extends Controller
 
     public function postDelete(Request $request)
     {
-        $permission = Permission::find($request->id);
+        $permission = $this->permissionRepository->find($request->id);
 
         $permission->delete();
 

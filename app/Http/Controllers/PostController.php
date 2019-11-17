@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
 use App\Repositories\Post\PostRepositoryInterface;
-use Illuminate\Support\Facades\Auth;
-Use App\Jobs\SendPostEmail;
 
 class PostController extends Controller
 {

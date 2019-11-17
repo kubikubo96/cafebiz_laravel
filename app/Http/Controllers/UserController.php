@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Post;
-use App\User;
-use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use App\Repositories\User\UserRepository;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -18,7 +14,6 @@ class UserController extends Controller
 
     function __construct(UserRepository $userRepository)
     {
-
         $this->userRepository = $userRepository;
 
         $rolesForAddUser = $this->userRepository->getRolesForAddUser();
@@ -37,10 +32,25 @@ class UserController extends Controller
 
     function postAdd(Request $request)
     {
-        if (empty($request->name) || empty($request->email) || empty($request->password) ||
-            ($request->confirm_password != $request->password)) {
-            return ['status' => 1, 'message' => 'Add user thất bại !!'];
+        $validator = Validator::make($request->all(),
+            [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required',
+                'confirm_password' => 'same:password'
+            ],[
+                'name.required' =>'Bạn chưa nhập tên người dùng ',
+                'email.required' => 'Bạn chưa nhập email',
+                'email.email' =>' Bạn chưa nhập đúng định dạng email',
+                'email.unique' => ' Email đã tồn tại',
+                'password.required' =>'Bạn chưa nhập password',
+                'confirm_password.same' =>'Mật khẩu nhập lại chưa khớp'
+            ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->all()]);
         }
+
         $this->userRepository->create_user($request);
 
         $user = $this->userRepository->getAll();
@@ -96,7 +106,6 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-
             return redirect('admin');
         } else {
             return redirect('admin/login')->with('notify', 'Đăng nhập không thành công !!');

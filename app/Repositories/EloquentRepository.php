@@ -56,7 +56,6 @@ abstract class EloquentRepository implements RepositoryInterface
     public function find($id)
     {
         $result = $this->_model->find($id);
-
         return $result;
     }
 
@@ -84,7 +83,6 @@ abstract class EloquentRepository implements RepositoryInterface
             $result->update($attributes);
             return $result;
         }
-
         return false;
     }
 
@@ -102,7 +100,6 @@ abstract class EloquentRepository implements RepositoryInterface
 
             return true;
         }
-
         return false;
     }
 

@@ -101,7 +101,7 @@
                         //init dataTable
                         $('#sample_2').dataTable();
                         $('.error_post').addClass('hidden');
-                        alert("Ajax Add thành công !!!");
+                        toastr.success('Add post thành công !!!');
                         //ẩn modal khi thêm thành công
                         $('.add_post').modal('hide');
                     }
@@ -158,7 +158,7 @@
                         $(".portlet-body").html(result);
                         //init dataTable
                         $('#sample_2').dataTable();
-                        alert("Edit thành công !!!");
+                        toastr.success('Edit thành công !!!');
                         $('#editPostModal').modal('hide');
                     }
                 }
@@ -178,7 +178,7 @@
                     $(".portlet-body").html(result);
                     //init dataTable
                     $('#sample_2').dataTable();
-                    alert("Bạn đã xóa thành công !");
+                    toastr.success('Bạn đã xóa thành công !!!');
                 }
             });
         }

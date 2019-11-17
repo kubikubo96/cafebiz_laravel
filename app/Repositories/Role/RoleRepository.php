@@ -2,11 +2,7 @@
 
 namespace App\Repositories\Role;
 
-use App\Permission_Roles;
 use App\Repositories\EloquentRepository;
-use App\Role;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class RoleRepository extends EloquentRepository
 {
@@ -22,13 +18,7 @@ class RoleRepository extends EloquentRepository
     public function getAll()
     {
         $roles = \App\Role::with('permissions', 'users', 'permission_roles')->get();
-
         return $roles;
-    }
-
-    //xử lý postAdd bên RoleController
-    public function create_role($attributes)
-    {
     }
 
     //xử lý openEditModal bên RoleController

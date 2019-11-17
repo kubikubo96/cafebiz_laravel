@@ -85,7 +85,7 @@
                         //init dataTable
                         $('#sample_2').dataTable();
                         $('#modalAddPermission').modal('hide');
-                        alert('Add permission thành công !');
+                        toastr.success('Add permission thành công !!!');
                     }
                 }
             });
@@ -126,7 +126,7 @@
                         $(".portlet-body").html(result);
                         //init dataTable
                         $('#sample_2').dataTable();
-                        alert("Edit thành công !!!");
+                        toastr.success('Edit thành công !!!');
                         $('#modalEditPermission').modal('hide');
                     }
                 }
@@ -146,7 +146,7 @@
                     $(".portlet-body").html(result);
                     //init dataTable
                     $('#sample_2').dataTable();
-                    alert("Bạn đã xóa thành công !");
+                    toastr.success('Bạn đã xóa thành công !!!');
                 }
             });
         }

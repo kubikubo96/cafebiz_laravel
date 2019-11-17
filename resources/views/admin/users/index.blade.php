@@ -70,8 +70,6 @@
         function createUser() {
             var data = {
                 name: $('#name').val(),
-                // role_id : $('.role_id').val(),
-                // role_id : $("#roles").find('option[name="role_id"]').val(),
                 role_id: $('#roles').find('option:selected').val(),
                 email: $('#email').val(),
                 password: $('#password').val(),
@@ -84,19 +82,28 @@
                 dateType: "text",
                 data: data,
                 success: function (result) {
-                    if (result.status) {
-                        $('.error_user').removeClass('hidden');
-                        $('.error_user').html(result.message);
+                    if (result.error) {
+                        printErrorAddUser(result.error);
                     } else {
-                        $('.error_user').removeClass('hidden');
                         $(".portlet-body").html(result);
                         //init dataTable
                         $('#sample_2').dataTable();
                         $('#add_user').modal('hide');
-                        alert('Add user thành công !');
+                        toastr.success('Add user thành công !')
                     }
                 }
             });
+
+            function printErrorAddUser(e) {
+                $(".print-error-add-user").find("ul").html('');
+                $(".print-error-add-user").css('display', 'block');
+                // each function được sử dụng để lặp qua từng phần tử của jQuery object
+                // key là số thứ tự duyệt bắt đầu từ 0
+                //value là giá trị
+                $.each(e, function (key, value) {
+                    $(".print-error-add-user").find("ul").append('<li>' + value + '</li>');
+                });
+            }
         }
 
         //open modal edit
@@ -128,7 +135,6 @@
 
 
         function editUserInModal() {
-
             var form_user = $("#editUser");
             var id = form_user.find('input[name="id"]').val();
             var data = {
@@ -138,7 +144,7 @@
                 password: $(form_user).find('input[name="password"]').val(),
                 confirm_password: $(form_user).find('input[name="confirm_password"]').val(),
                 changePassword: $(form_user).find('input[name="changePassword"]').val(),
-            }
+            };
             $.ajax({
                 url: "{{route('admin.users.edit')}}",
                 type: "post",
@@ -153,7 +159,7 @@
                         $(".portlet-body").html(result);
                         //init dataTable
                         $('#sample_2').dataTable();
-                        alert("Edit thành công !!!");
+                        toastr.success('Edit thành công !!!');
                         $('#editUserModal').modal('hide');
                     }
                 }
@@ -162,7 +168,7 @@
         }
 
         function deleteUser(id) {
-            confirmDeleteUser = confirm("Bạn có chắc muốn xóa không")
+            confirmDeleteUser = confirm("Bạn có chắc muốn xóa không");
             if (!confirmDeleteUser) {
                 return false;
             }
@@ -175,7 +181,8 @@
                     $(".portlet-body").html(result);
                     //init dataTable
                     $('#sample_2').dataTable();
-                    alert("Bạn đã xóa thành công !");
+                    toastr.success('Bạn đã xóa thành công !!!');
+
                 }
             });
         }

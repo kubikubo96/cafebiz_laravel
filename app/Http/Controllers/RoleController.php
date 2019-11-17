@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Role;
-use App\Permission;
 use Illuminate\Http\Request;
 use App\Permission_Roles;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Role\RoleRepository;
+use App\Repositories\Permission\PermissionRepository;
 
 class RoleController extends Controller
 {
     //
-    function __construct(RoleRepository $roleRepository)
+    function __construct(RoleRepository $roleRepository,PermissionRepository $permissionRepository)
     {
         $this->roleRepository = $roleRepository;
+        $this->PermissionRepository = $permissionRepository;
 
-        $permissionForRole = Permission::all();
+        $permissionForRole = $this->PermissionRepository->getAll();
+
         view()->share('permissionForRole', $permissionForRole);
     }
 
@@ -62,26 +64,18 @@ class RoleController extends Controller
             return ['status' => 1, 'message' => 'Add role thất bại !!'];
         }
         $role = new Role;
-
         $role->title = $request->title;
-
         $role->save();
 
         //lấy mảng id permission được truyền lên Request
         $arr_permission_ids = isset($request->my_multi_select1) ? $request->my_multi_select1 : array();
 
         foreach ($arr_permission_ids as $id) {
-
             $permissionRole = new Permission_Roles;
-
             $permissionRole->permission_id = $id;
-
             $permissionRole->role_id = $role->id;
-
             $permissionRole->save();
-
         }
-
         $roles = $this->roleRepository->getAll();
 
         return view('admin.roles.row_role', compact('roles'));
@@ -91,9 +85,7 @@ class RoleController extends Controller
     public function postDelete(Request $request)
     {
         $role = $this->roleRepository->find($request->id);
-
         $role->delete();
-
         $roles = $this->roleRepository->getAll();
 
         return view('admin.roles.row_role', compact('roles'));

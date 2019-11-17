@@ -52,8 +52,8 @@
                                 </select>
                             </div>
 
-                            <div style="margin-top: 20px;">
-                                <p class="error_user text-danger hidden"></p>
+                            <div class="alert alert-danger print-error-add-user" style="display:none">
+                                <ul></ul>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" onclick="createUser();" class="btn btn-primary">Save changes</button>
+                <button type="button" id="showtoast" onclick="createUser();" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
