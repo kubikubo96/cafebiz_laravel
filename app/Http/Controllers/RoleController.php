@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
 use Illuminate\Http\Request;
-use App\Permission_Roles;
 use App\Repositories\Role\RoleRepository;
 use App\Repositories\Permission\PermissionRepository;
 
@@ -64,19 +62,15 @@ class RoleController extends Controller
         if (empty($request->title)) {
             return ['status' => 1, 'message' => 'Add role thất bại !!'];
         }
-        $role = new Role;
-        $role->title = $request->title;
-        $role->save();
+
+        $role = $this->roleRepository->addRole($request);
 
         //lấy mảng id permission được truyền lên Request
         $arr_permission_ids = isset($request->my_multi_select1) ? $request->my_multi_select1 : array();
 
-        foreach ($arr_permission_ids as $id) {
-            $permissionRole = new Permission_Roles;
-            $permissionRole->permission_id = $id;
-            $permissionRole->role_id = $role->id;
-            $permissionRole->save();
-        }
+        //thêm tất cả permission_id = $request->my_multi_select1 thuộc $role vào bảng permission
+        $role->permissions()->attach($arr_permission_ids);
+
         $roles = $this->roleRepository->getAll();
 
         return view('admin.roles.row_role', compact('roles'));

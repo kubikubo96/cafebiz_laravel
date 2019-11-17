@@ -21,6 +21,17 @@ class RoleRepository extends EloquentRepository
         return $roles;
     }
 
+    public  function addRole($attributes)
+    {
+        $data = array();
+
+        $data['title'] = $attributes->title;
+
+        $result = $this->create($data);
+
+        return $result;
+    }
+
     //xử lý openEditModal bên RoleController
     public function openEditModal_role($attributes)
     {
