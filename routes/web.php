@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::get('result', function () {
             return view('admin.posts.result');
         });
-        Route::get('content_post', 'Post@getContentPost');
+        Route::get('content_post', 'PostController@getContentPost');
 
     });
 
