@@ -18,7 +18,7 @@
                         </div>
                         <br/>
                         <div class="col-lg-12" style="font-size: 16px;">
-                            {{--                            meta name="csrf-token"...  => phải có mới dùng đc ajax--}}
+                            {{--meta name="csrf-token"...  => phải có mới dùng đc ajax--}}
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                             <div class="form-group" style="">
                                 <label>Name</label>
