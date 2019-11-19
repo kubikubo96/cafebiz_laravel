@@ -134,6 +134,11 @@ class pageController extends Controller
 
     public function postForgotPassword(Request $request)
     {
+        $this->validate($request,[
+            'email' =>'required'
+        ],[
+            'email.required' =>' Email không được để trống !'
+        ]);
         $yourMail = $request->email;
         $yourUser = DB::table('users')->where('email', $yourMail)->first();
         $yourID = $yourUser->id;
