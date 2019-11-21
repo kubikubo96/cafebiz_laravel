@@ -4,8 +4,6 @@ namespace App\Repositories\User;
 
 use App\Repositories\EloquentRepository;
 use App\Role;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class UserRepository extends EloquentRepository
 {
