@@ -25,7 +25,7 @@ class UserRepository extends EloquentRepository
     function getAll()
     {
         return $this->user->with('comments', 'posts', 'role')
-            ->where('name', '!=', 'root')->get();
+            ->where('id', '!=', '1')->get();
     }
 
     //xử lý postAdd bên UserController
