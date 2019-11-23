@@ -31,14 +31,8 @@ class RoleController extends Controller
     public function openEditModalRole(Request $request)
     {
         $role = $this->roleRepository->openEditModal_role($request);
+        $id_permissions = collect($role->permissions)->pluck('id')->toArray();
 
-        $id_permissions = array();
-
-        $i = 0;
-        foreach ($role->permissions as $permissions) {
-            $id_permissions[$i] = $permissions->id;
-            $i++;
-        }
         return view('admin.roles.edit', compact('role', 'id_permissions'));
     }
 

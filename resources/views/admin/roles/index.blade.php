@@ -131,10 +131,11 @@
         });
 
         function deleteRole(id) {
-            confirmDeleteRole = confirm("Bạn có chắc muốn xóa không")
+            confirmDeleteRole = confirm("Bạn có chắc muốn xóa không");
             if (!confirmDeleteRole) {
                 return false;
             }
+
             $.ajax({
                 url: "{{route('admin.roles.delete')}}",
                 type: "POST",

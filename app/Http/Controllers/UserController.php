@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\User\UserRepository;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UserRequests\UserAddRequest;
 
 class UserController extends Controller
 {
 
     protected $userRepository;
+    protected $userAddRequest;
 
-    function __construct(UserRepository $userRepository)
+    function __construct(UserRepository $userRepository, UserAddRequest $userAddRequest)
     {
         $this->userRepository = $userRepository;
+        $this->userAddRequest = $userAddRequest;
 
         $rolesForAddUser = $this->userRepository->getRolesForAddUser();
 
@@ -32,24 +34,12 @@ class UserController extends Controller
 
     function postAdd(Request $request)
     {
-        $validator = Validator::make($request->all(),
-            [
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required',
-                'confirm_password' => 'same:password'
-            ],[
-                'name.required' =>'Bạn chưa nhập tên người dùng ',
-                'email.required' => 'Bạn chưa nhập email',
-                'email.email' =>' Bạn chưa nhập đúng định dạng email',
-                'email.unique' => ' Email đã tồn tại',
-                'password.required' =>'Bạn chưa nhập password',
-                'confirm_password.same' =>'Mật khẩu nhập lại chưa khớp'
-            ]);
+        $validator = $this->userAddRequest->rules($request);
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()->all()]);
         }
+
         $this->userRepository->create_user($request);
 
         $user = $this->userRepository->getAll();
@@ -95,14 +85,6 @@ class UserController extends Controller
 
     public function postLoginAdmin(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required',
-            'password' => 'required',
-        ], [
-            'email.required' => 'Bạn chưa nhập Email !',
-            'password.required' => 'Bạn chưa nhập Password !'
-        ]);
-        //Auth::attempt :  kiểm tra đăng nhập
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
             return redirect('admin');

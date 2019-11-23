@@ -53,7 +53,6 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
     //xử lý openEditModal bên PostController
     public function openEditModal_post($attributes)
     {
-
         $data = $attributes->all();
         $id = $data['id'];
         $result = $this->find($id);
@@ -83,9 +82,6 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
             $file->move('images', $image);
 
             $data['image'] = $image;
-        } else {
-            $data['image'] = "";
-
         }
 
         $result = $this->update($data['id'], $data);

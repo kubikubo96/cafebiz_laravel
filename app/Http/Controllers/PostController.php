@@ -4,17 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Post\PostRepositoryInterface;
+use App\Http\Requests\Postrequests\PostAddRequest;
+use App\Http\Requests\Postrequests\PostEditRequest;
 
 class PostController extends Controller
 {
-    /**1
+    /**3
      * @var PostRepositoryInterface|\App\Repositories\RepositoryInterface
+     * @var ...
      */
     protected $postRepository;
+    protected $postAddRequest;
+    protected $postEditRequest;
 
-    public function __construct(PostRepositoryInterface $postRepository)
-    {
+
+    public function __construct(
+        PostRepositoryInterface $postRepository,
+        PostAddRequest $postAddRequest,
+        PostEditRequest $postEditRequest
+    ) {
         $this->postRepository = $postRepository;
+        $this->postAddRequest = $postAddRequest;
+        $this->postEditRequest = $postEditRequest;
     }
 
     public function index()
@@ -28,9 +39,8 @@ class PostController extends Controller
     {
         $this->authorize('view-post');
 
-        //... Validation here
-        if (empty($request->title) || empty($request->title_link) || empty($request->content_post)) {
-            return ['status' => 1, 'message' => 'Add Post thất bại, các trường không được để trống !!'];
+        if ($this->postAddRequest->rules($request)) {
+            return $this->postAddRequest->rules($request);
         }
 
         $this->postRepository->create_post($request);
@@ -43,7 +53,6 @@ class PostController extends Controller
 
     public function openEditModal(Request $request)
     {
-
         //quyền chỉ author mới sữa được posts
         $this->authorize('view-post');
 
@@ -51,7 +60,6 @@ class PostController extends Controller
 
         //quyền author chỉ được edit những bài viết của mình
         $this->authorize($post, 'openEditModal');
-
 
         $post = $this->postRepository->openEditModal_post($request);
 
@@ -61,14 +69,13 @@ class PostController extends Controller
 
     public function postEdit(Request $request)
     {
-        //... Validation here
-        if (empty($request->title) || empty($request->title_link) || empty($request->content_post)) {
-            return ['status' => 1, 'message' => 'Edit Post thất bại, các trường không được để trống !!'];
+        if ($this->postEditRequest->rules($request)) {
+            return $this->postEditRequest->rules($request);
         }
 
         $this->postRepository->postEditRepo($request);
 
-        $post= $this->postRepository->getAll();
+        $post = $this->postRepository->getAll();
 
         return view('admin.posts.row_post', compact('post'));
     }
@@ -85,9 +92,8 @@ class PostController extends Controller
 
         $this->postRepository->delete($request->id);
 
-        $post= $this->postRepository->getAll();
+        $post = $this->postRepository->getAll();
 
         return view('admin.posts.row_post', compact('post'));
-
     }
 }

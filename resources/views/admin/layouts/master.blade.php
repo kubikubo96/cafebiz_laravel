@@ -45,6 +45,9 @@
     <link href="admin_asset/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet"
           type="text/css"/>
     <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="admin_asset/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="admin_asset/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css"/>
     <link href="admin_asset/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
@@ -722,9 +725,15 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="admin_asset/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="admin_asset/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="admin_asset/global/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="admin_asset/pages/scripts/ui-sweetalert.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="admin_asset/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->

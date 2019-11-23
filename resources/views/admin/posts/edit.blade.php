@@ -30,7 +30,8 @@
                 </div>
                 <div class="form-group">
                     <label>Image</label>
-                    <input type="file" name="image" id="image">
+                    <input type="file" name="image" id="image"/>
+                    <img style="margin-top:20px;" src="images/{{ @$post->image}}" width="100" height="100px"/>
                 </div>
                 <div style="margin-top: 20px;">
                     <p class="error_post text-danger hidden"></p>

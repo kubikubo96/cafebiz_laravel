@@ -1,4 +1,3 @@
-
 <div class="footer">
     <div class="container">
         <div class="row">
@@ -16,7 +15,7 @@
                 <p>Email: doanhnghiep@admicro.vn</p>
             </div>
             <div class="col-md-4 c10">
-                <img src="images/thuongthoi.jpg" width="25%" style="margin-top: 10px;"/>
+                <img src="images/thuongthoi.jpg" width="25%" style="margin-top: 10px;" />
                 <h6 style="margin-top: 5px;">© Copyright 2012 - 2019 - Công ty Cổ phần VCCorp</h6>
                 <p>Giấy phép thiết lập trang thông tin điện tử tổng hợp trên internet số 1776/GP-STTTT do Sở Thông
                     tin và Truyền thông TP Hà Nội cấp ngày 23 tháng 06 năm 2014.</p>
