@@ -39,7 +39,7 @@ class UserRepository extends EloquentRepository
             $data['admin'] = 0;
         }
 
-        return $this->create($data);
+        return $this->user->create($data);
     }
 
     //xử lý openEditModal bên UserController
@@ -48,7 +48,7 @@ class UserRepository extends EloquentRepository
         $data = $attributes->all();
         $id = $data['id'];
 
-        return $this->find($id);
+        return $this->user->find($id);
     }
 
     //xử lý userEdit bên UserController
@@ -62,7 +62,7 @@ class UserRepository extends EloquentRepository
             $attributes->password = bcrypt($attributes->password);
         }
 
-        return $this->update($data['id'], $data);
+        return $this->user->update($data['id'], $data);
     }
 
     function getRolesForAddUser()

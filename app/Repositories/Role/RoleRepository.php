@@ -3,21 +3,26 @@
 namespace App\Repositories\Role;
 
 use App\Repositories\EloquentRepository;
+use App\Role;
 
 class RoleRepository extends EloquentRepository
 {
+    public function __construct(Role $role)
+    {
+        $this->role = $role;
+    }
     /**
      * get model
      * @return string
      */
     public function getModel()
     {
-        return \App\Role::class;
+        return Role::class;
     }
 
     public function getAll()
     {
-        $roles = \App\Role::with('permissions', 'users', 'permission_roles')->get();
+        $roles = $this->role->with('permissions', 'users', 'permission_roles')->get();
         return $roles;
     }
 
@@ -27,17 +32,12 @@ class RoleRepository extends EloquentRepository
 
         $data['title'] = $attributes->title;
 
-        $result = $this->create($data);
-
-        return $result;
+        return $this->role->create($data);
     }
 
     //xử lý openEditModal bên RoleController
     public function openEditModal_role($attributes)
     {
-        $data = $attributes->all();
-        $id = $data['id'];
-        $result = $this->find($id);
-        return $result;
+        return $this->role->find($attributes->id);
     }
 }
