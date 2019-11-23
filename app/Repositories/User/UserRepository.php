@@ -4,33 +4,34 @@ namespace App\Repositories\User;
 
 use App\Repositories\EloquentRepository;
 use App\Role;
+use App\User;
 
 class UserRepository extends EloquentRepository
 {
+    public function __construct(User $user,Role $role)
+    {
+        $this->user = $user;
+        $this->role = $role;
+    }
     /**
      * get model
      * @return string
      */
     public function getModel()
     {
-        return \App\User::class;
+        return User::class;
     }
 
     function getAll()
     {
-        $user = \App\User::with('comments', 'posts', 'role')
+        return $this->user->with('comments', 'posts', 'role')
             ->where('name', '!=', 'root')->get();
-        return $user;
     }
 
     //xử lý postAdd bên UserController
     public function create_user($attributes)
     {
-        $data = array();
-        $data['name'] = $attributes->name;
-        $data['role_id'] = $attributes->role_id;
-        $data['email'] = $attributes->email;
-        $data['password'] = bcrypt($attributes->password);
+        $data = $attributes->all();
 
         if (!empty($attributes->admin)) {
             $data['admin'] = $attributes->admin;
@@ -38,10 +39,7 @@ class UserRepository extends EloquentRepository
             $data['admin'] = 0;
         }
 
-        $result = $this->create($data);
-
-        return $result;
-
+        return $this->create($data);
     }
 
     //xử lý openEditModal bên UserController
@@ -50,8 +48,7 @@ class UserRepository extends EloquentRepository
         $data = $attributes->all();
         $id = $data['id'];
 
-        $result = $this->find($id);
-        return $result;
+        return $this->find($id);
     }
 
     //xử lý userEdit bên UserController
@@ -65,18 +62,12 @@ class UserRepository extends EloquentRepository
             $attributes->password = bcrypt($attributes->password);
         }
 
-        $result = $this->update($data['id'], $data);
-
-        return $result;
-
-
+        return $this->update($data['id'], $data);
     }
 
     function getRolesForAddUser()
     {
-        $rolesForAddUser = Role::with('permissions', 'users', 'permission_roles')
-            ->where('title', '!=', 'root')->get();
-        return $rolesForAddUser;
+        return $this->role->with('permissions', 'users', 'permission_roles')
+            ->where('id', '!=', '1')->get();
     }
-
 }
