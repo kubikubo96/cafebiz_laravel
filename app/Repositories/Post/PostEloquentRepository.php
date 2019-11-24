@@ -57,7 +57,7 @@ class PostEloquentRepository extends EloquentRepository
 
     public function postPaginate()
     {
-        return Post::paginate(3);
+        return $this->paginate(3);
     }
 
     public function postHotNews()
