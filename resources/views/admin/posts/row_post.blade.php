@@ -1,16 +1,16 @@
 <table class="table table-striped table-bordered table-hover postTable" id="sample_2">
     <thead>
-    <tr>
-        <th>Poster</th>
-        <th>Title</th>
-        <th>Title_link</th>
-        <th>Content_post</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+            <th>Title_link</th>
+            <th>Content_post</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
     </thead>
     <tbody id="posts_result">
-    @foreach($post as $pt)
+        @foreach($post as $pt)
         <tr id="post_id_{{ $pt->id }}">
             <td>
                 <div>
@@ -22,7 +22,7 @@
                     {{$pt->title}}
                 </div>
                 <div id="iamge_edit">
-                    <img src="images/{{$pt->image}}" width="100px" height="100px"/>
+                    <img src="images/{{$pt->image}}" width="100px" height="100px" />
                 </div>
             </td>
             <td id="title_link_edit">{{$pt->title_link}}</td>
@@ -36,11 +36,9 @@
                 </a>
             </td>
             <td>
-                <a href="javascript:void(0)" onclick="deletePost({{ $pt->id }})" style="color:#FE2E2E;"
-                >Delete</a>
+                <a href="javascript:void(0)" onclick="deletePost({{ $pt->id }})" style="color:#FE2E2E;">Delete</a>
             </td>
         </tr>
-    @endforeach
+        @endforeach
     </tbody>
 </table>
-

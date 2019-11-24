@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade modalEditRole" id="modalEditRole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <form action="{{route('admin.roles.edit')}}" id="editRole" name="editRole" method="POST">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

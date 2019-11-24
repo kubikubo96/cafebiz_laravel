@@ -11,9 +11,10 @@ class CommentController extends Controller
     protected $commentRepository;
     protected $postRepository;
 
-    public function __construct(CommentRepository $commentRepository,
-                                PostEloquentRepository $postEloquentRepository)
-    {
+    public function __construct(
+        CommentRepository $commentRepository,
+        PostEloquentRepository $postEloquentRepository
+    ) {
         $this->commentRepository = $commentRepository;
         $this->postRepository = $postEloquentRepository;
     }
@@ -42,7 +43,6 @@ class CommentController extends Controller
         return view('pages.row_detail', [
             'post' => $post,
         ]);
-
     }
 
     public function postDelete(Request $request)

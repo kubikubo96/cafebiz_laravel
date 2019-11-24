@@ -13,9 +13,10 @@ use App\Repositories\User\UserRepository;
 class pageController extends Controller
 {
     //
-    public function __construct(UserRepository $userRepository,
-                                PostEloquentRepository $postEloquentRepository)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        PostEloquentRepository $postEloquentRepository
+    ) {
         $this->userRepository = $userRepository;
         $this->postRepository = $postEloquentRepository;
     }
@@ -36,14 +37,17 @@ class pageController extends Controller
 
     function postLogin(Request $request)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'email' => 'required',
                 'password' => 'required'
-            ], [
+            ],
+            [
                 'email.required' => 'Bạn chưa nhập Email',
                 'password.required' => 'Bạn chưa nhập Password'
-            ]);
+            ]
+        );
         //Auth::attempt :  kiểm tra đăng nhập
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('/');
@@ -65,13 +69,15 @@ class pageController extends Controller
 
     function postRegister(Request $request)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'name' => "required",
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required',
                 'confirm_password' => 'required|same:password'
-            ], [
+            ],
+            [
                 'name.required' => 'Bạn chưa nhập tên người dùng',
                 'email.required' => 'Bạn chưa nhập email',
                 'email.email' => 'Bạn chưa nhập đúng định dạng email',
@@ -79,7 +85,8 @@ class pageController extends Controller
                 'password.required' => 'Bạn chưa nhập password',
                 'confirm_password.required' => 'Bạn chưa nhập lại mật khẩu',
                 'confirm_password.same' => 'Mật khẩu nhập lại chưa khớp'
-            ]);
+            ]
+        );
 
         $this->userRepository->create_user($request);
 
@@ -94,26 +101,32 @@ class pageController extends Controller
 
     function postUserPersonal(Request $request, $id)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'name' => "required",
-            ], [
+            ],
+            [
                 'name.required' => 'Bạn chưa nhập tên người dùng',
-            ]);
+            ]
+        );
         $user = $this->userRepository->find($id);
 
         $user->name = $request->name;
 
         if ($request->changePassword == "on") {
-            $this->validate($request,
+            $this->validate(
+                $request,
                 [
                     'password' => 'required',
                     'confirm_password' => 'required|same:password'
-                ], [
+                ],
+                [
                     'password.required' => 'Bạn chưa nhập password',
                     'confirm_password.required' => 'Bạn chưa nhập lại mật khẩu',
                     'confirm_password.same' => 'Mật khẩu nhập lại chưa khớp'
-                ]);
+                ]
+            );
             $user->password = bcrypt($request->password);
         }
         $user->save();
@@ -134,10 +147,10 @@ class pageController extends Controller
 
     public function postForgotPassword(Request $request)
     {
-        $this->validate($request,[
-            'email' =>'required'
-        ],[
-            'email.required' =>' Email không được để trống !'
+        $this->validate($request, [
+            'email' => 'required'
+        ], [
+            'email.required' => ' Email không được để trống !'
         ]);
         $yourMail = $request->email;
         $yourUser = DB::table('users')->where('email', $yourMail)->first();
@@ -156,6 +169,4 @@ class pageController extends Controller
 
         return redirect('login')->with('notifySuccess', 'Check mail của bạn và đăng nhập bằng mật khẩu mới !!');
     }
-
-
 }

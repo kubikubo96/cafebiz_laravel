@@ -13,7 +13,7 @@
 
 //Route login,logout Admin
 
-Route::get('edit-modal','UserController@getEditModal');
+Route::get('edit-modal', 'UserController@getEditModal');
 
 Route::get('admin/login', 'UserController@getLoginAdmin');
 Route::post('admin/login', 'UserController@postLoginAdmin');
@@ -47,7 +47,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
             return view('admin.posts.result');
         });
         Route::get('content_post', 'PostController@getContentPost');
-
     });
 
     /*
@@ -67,7 +66,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::post('delete', 'UserController@postDelete')->name('admin.users.delete');
 
         Route::post('ajax_index', 'UserController@indexAjax');
-
     });
 
     /*
@@ -81,38 +79,36 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
     /*
      * Group permissions
      * */
-    Route::group(['prefix'=>'permissions'],function(){
+    Route::group(['prefix' => 'permissions'], function () {
 
-        Route::get('/','PermissionController@getAll');
+        Route::get('/', 'PermissionController@getAll');
 
-        Route::post('add','PermissionController@postAdd')->name('admin.permissions.add');
+        Route::post('add', 'PermissionController@postAdd')->name('admin.permissions.add');
 
-        Route::post('edit_modal_permission','PermissionController@openEditModalPermission')
+        Route::post('edit_modal_permission', 'PermissionController@openEditModalPermission')
             ->name('admin.permissions.edit_modal_permission');
 
-        Route::post('edit','PermissionController@postEdit')->name('admin.permissions.edit');
+        Route::post('edit', 'PermissionController@postEdit')->name('admin.permissions.edit');
 
-        Route::post('delete','PermissionController@postDelete')->name('admin.permissions.delete');
-
+        Route::post('delete', 'PermissionController@postDelete')->name('admin.permissions.delete');
     });
 
     /*
      * Group permissions
      * */
 
-    Route::group(['prefix'=>'roles'],function(){
+    Route::group(['prefix' => 'roles'], function () {
 
-        Route::get('/','RoleController@getAll');
+        Route::get('/', 'RoleController@getAll');
 
-        Route::post('add','RoleController@postAdd')->name('admin.roles.add');
+        Route::post('add', 'RoleController@postAdd')->name('admin.roles.add');
 
-        Route::post('edit_modal_role','RoleController@openEditModalRole')
+        Route::post('edit_modal_role', 'RoleController@openEditModalRole')
             ->name('admin.roles.edit_modal_role');
 
-        Route::post('edit','RoleController@postEdit')->name('admin.roles.edit');
+        Route::post('edit', 'RoleController@postEdit')->name('admin.roles.edit');
 
-        Route::post('delete','RoleController@postDelete')->name('admin.roles.delete');
-
+        Route::post('delete', 'RoleController@postDelete')->name('admin.roles.delete');
     });
 });
 
@@ -131,7 +127,7 @@ Route::get('register', 'Pages\PageController@getRegister');
 Route::post('register', 'Pages\PageController@postRegister');
 
 Route::get('forgot_password', 'Pages\PageController@getForgotPassword');
-Route::post('forgot_password','Pages\PageController@postForgotPassword');
+Route::post('forgot_password', 'Pages\PageController@postForgotPassword');
 
 Route::get('user_personal/{id}', 'Pages\PageController@getUserPersonal');
 Route::post('user_personal/{id}', 'Pages\PageController@postUserPersonal');

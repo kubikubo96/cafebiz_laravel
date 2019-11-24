@@ -4,9 +4,12 @@ namespace App\Repositories\Post;
 
 use App\Repositories\EloquentRepository;
 use App\Post;
+use App\Services\PostService;
 
 class PostEloquentRepository extends EloquentRepository
 {
+    use PostService;
+
     /**
      * get model
      * @return string
@@ -26,25 +29,7 @@ class PostEloquentRepository extends EloquentRepository
     {
         $data = $attributes->all();
 
-        //hasFile : kiểm tra xem người dùng có truyền hình k. nếu k có thì để rỗng
-        if ($attributes->hasFile('image')) {
-            $file = $attributes->file('image');
-            $endfile = $file->getClientOriginalExtension();
-
-            if ($endfile != 'jpg' && $endfile != 'png' && $endfile != 'jpeg' && $endfile != 'JPG' && $endfile != 'PNG') {
-                return redirect('admin/posts/')->with(
-                    'error_img',
-                    'Bạn chỉ được chọn file có đuôi jpg,png,jpeg :('
-                );
-            }
-            $image = $file->getClientOriginalName();
-
-            $file->move('images', $image);
-
-            $data['image'] = $image;
-        } else {
-            $data['image'] = "";
-        }
+        $data['image'] = $this->updateImage($attributes->file('image'));
 
         return $this->create($data);
     }
@@ -61,24 +46,10 @@ class PostEloquentRepository extends EloquentRepository
     //xử lý postEdit bên PostController
     public function postEditRepo($attributes)
     {
-        $data = $attributes->all();
+        $data = $attributes->except('image');
 
-        //hasFile : kiểm tra xem người dùng có truyền hình k. nếu k có thì để rỗng
         if ($attributes->hasFile('image')) {
-            $file = $attributes->file('image');
-            $endfile = $file->getClientOriginalExtension();
-
-            if ($endfile != 'jpg' && $endfile != 'png' && $endfile != 'jpeg' && $endfile != 'JPG' && $endfile != 'PNG') {
-                return redirect('admin/posts/')->with(
-                    'error_img',
-                    'Bạn chỉ được chọn file có đuôi jpg,png,jpeg :('
-                );
-            }
-            $image = $file->getClientOriginalName();
-
-            $file->move('images', $image);
-
-            $data['image'] = $image;
+            $data['image'] = $this->updateImage($attributes->file('image'));
         }
 
         return $this->update($data['id'], $data);

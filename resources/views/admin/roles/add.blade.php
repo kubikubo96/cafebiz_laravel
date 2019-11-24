@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="modalAddRole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <form action="{{ route('admin.roles.add') }}" method="POST" id="formCreateRole">
         {{--meta name="csrf-token"...  => phải có mới dùng đc ajax--}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,11 +19,11 @@
                                     <small>Add</small>
                                 </h1>
                             </div>
-                            <br/>
+                            <br />
                             <div class="col-lg-12" style="font-size: 16px;">
                                 <div class="form-group" style="">
                                     <label>Title</label>
-                                    <input class="form-control" name="title" id="title" placeholder="Nhập role"/>
+                                    <input class="form-control" name="title" id="title" placeholder="Nhập role" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12" style="padding: 0;">
@@ -31,9 +31,10 @@
                                             <label class="control-label col-md-3">Permission</label>
                                             <div class="col-md-9">
                                                 <select multiple="multiple" class="multi-select" id="my_multi_select1"
-                                                        name="my_multi_select1[]">
+                                                    name="my_multi_select1[]">
                                                     @foreach($permissionForRole as $permission)
-                                                        <option value="{{ @$permission->id }}">{{$permission->name}}</option>
+                                                    <option value="{{ @$permission->id }}">{{$permission->name}}
+                                                    </option>
                                                     @endforeach
                                                 </select>
                                             </div>

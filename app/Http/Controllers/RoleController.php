@@ -79,6 +79,4 @@ class RoleController extends Controller
         $roles = $this->roleRepository->getAll();
         return view('admin.roles.row_role', compact('roles'));
     }
-
-
 }

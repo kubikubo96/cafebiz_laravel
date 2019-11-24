@@ -34,7 +34,5 @@ class CommentRepository extends EloquentRepository
         $result = $this->create($data);
 
         return $result;
-
     }
-
 }

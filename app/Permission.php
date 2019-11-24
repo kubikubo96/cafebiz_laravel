@@ -13,19 +13,18 @@ class Permission extends Model
     protected $table = "permissions";
 
     protected $fillable = [
-        'title','name',
+        'title', 'name',
     ];
 
     protected $dates = ['deleted_at'];
 
-    public function roles(){
-        return $this->belongsToMany(Role::class,'permission_roles');
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'permission_roles');
     }
 
     public function permission_roles()
     {
         return $this->hasMany(Permission_Roles::class, 'permission_id', 'id');
     }
-
-
 }

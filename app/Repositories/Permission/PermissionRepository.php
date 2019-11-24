@@ -17,7 +17,7 @@ class PermissionRepository extends EloquentRepository
 
     public function getAll()
     {
-        return \App\Permission::with('roles','permission_roles')->get();
+        return \App\Permission::with('roles', 'permission_roles')->get();
     }
 
     //xử lý postAdd bên PermissionController
@@ -29,7 +29,6 @@ class PermissionRepository extends EloquentRepository
         $result = $this->create($data);
 
         return $result;
-
     }
 
     //xử lý openEditModal bên PermissionController
@@ -50,9 +49,8 @@ class PermissionRepository extends EloquentRepository
         $data['title'] = $attributes->title;
         $data['name'] = $attributes->name;
 
-        $result = $this->update( $data['id'],$data);
+        $result = $this->update($data['id'], $data);
 
         return $result;
     }
-
 }

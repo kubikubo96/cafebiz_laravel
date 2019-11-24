@@ -24,8 +24,7 @@ abstract class EloquentRepository implements RepositoryInterface
      * get model
      * @return string
      */
-    abstract public function getModel(
-    );
+    abstract public function getModel();
 
     /**
      * Set model
@@ -100,5 +99,4 @@ abstract class EloquentRepository implements RepositoryInterface
         }
         return false;
     }
-
 }

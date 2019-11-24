@@ -1,66 +1,65 @@
 @extends('admin.layouts.master')
 
 @section('content')
-    <!-- BEGIN CONTENT BODY -->
-    <div class="page-content">
-        <!-- BEGIN PAGE HEADER-->
+<!-- BEGIN CONTENT BODY -->
+<div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
 
     <!-- BEGIN PAGE BAR -->
-        <div class="page-bar">
-            <ul class="page-breadcrumb">
-                <li>
-                    <a href="index.html">Home</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <span>Posts</span>
-                </li>
-            </ul>
-            <div class="page-toolbar">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn green btn-sm btn-outline"
-                            data-toggle="modal" id="add_post" data-target=".add_post"> Add Posts
-                    </button>
-                    @include('admin/posts/add')
-                </div>
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Posts</span>
+            </li>
+        </ul>
+        <div class="page-toolbar">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn green btn-sm btn-outline" data-toggle="modal" id="add_post"
+                    data-target=".add_post"> Add Posts
+                </button>
+                @include('admin/posts/add')
             </div>
         </div>
-        <!-- END PAGE BAR -->
-        <!-- BEGIN PAGE TITLE-->
-        <h1 class="page-title"> Posts Datatable
-            <small>posts of authors</small>
-        </h1>
-        <!-- END PAGE TITLE-->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                <div class="portlet box green">
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <i class="fa fa-globe"></i>Posts
-                        </div>
-                        <div class="tools"></div>
-                    </div>
-                    <div class="portlet-body">
-                        @include('admin.posts.row_post',['post'=>$post])
-                    </div>
-                </div>
-                <!-- END EXAMPLE TABLE PORTLET-->
-            </div>
-        </div>
-
-
     </div>
-    <!-- END CONTENT BODY -->
-    @include('admin.posts.modal')
+    <!-- END PAGE BAR -->
+    <!-- BEGIN PAGE TITLE-->
+    <h1 class="page-title"> Posts Datatable
+        <small>posts of authors</small>
+    </h1>
+    <!-- END PAGE TITLE-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-globe"></i>Posts
+                    </div>
+                    <div class="tools"></div>
+                </div>
+                <div class="portlet-body">
+                    @include('admin.posts.row_post',['post'=>$post])
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+
+</div>
+<!-- END CONTENT BODY -->
+@include('admin.posts.modal')
 @endsection
 
 @section('scriptPlugins')
 @endsection
 
 @section('script')
-    <script language="javascript">
-        // $.ajaxSetup : setup ms dùng đc ajax gửi dữ liệu trong laravel
+<script language="javascript">
+    // $.ajaxSetup : setup ms dùng đc ajax gửi dữ liệu trong laravel
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -182,7 +181,5 @@
         }
 
 
-    </script>
+</script>
 @endsection
-
-

@@ -25,7 +25,5 @@ class PermissionRoleRepository extends EloquentRepository
         $result = $this->create($data);
 
         return $result;
-
     }
-
 }

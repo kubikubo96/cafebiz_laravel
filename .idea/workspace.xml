@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="daa2a75f-fc65-48bd-973e-d6bbc6b9d90d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/EloquentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/EloquentRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Role/RoleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Role/RoleRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/User/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/User/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/comments/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/comments/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="67" column="47" lean-forward="true" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
+            <state relative-caret-position="540">
+              <caret line="78" column="47" lean-forward="true" selection-start-line="78" selection-start-column="47" selection-end-line="78" selection-end-column="47" />
               <folding>
                 <element signature="e#41#81#0#PHP" expanded="true" />
               </folding>
@@ -473,7 +470,7 @@
       <workItem from="1574573540177" duration="485000" />
       <workItem from="1574574049976" duration="672000" />
       <workItem from="1574576127075" duration="313000" />
-      <workItem from="1574578005018" duration="4570000" />
+      <workItem from="1574578005018" duration="5167000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1573313987307</created>
@@ -682,7 +679,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227664000" />
+    <option name="totallyTimeSpent" value="228261000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1104,8 +1101,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Repositories/Post/PostEloquentRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="67" column="47" lean-forward="true" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
+        <state relative-caret-position="540">
+          <caret line="78" column="47" lean-forward="true" selection-start-line="78" selection-start-column="47" selection-end-line="78" selection-end-column="47" />
           <folding>
             <element signature="e#41#81#0#PHP" expanded="true" />
           </folding>

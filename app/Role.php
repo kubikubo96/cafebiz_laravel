@@ -9,7 +9,7 @@ class Role extends Model
 {
     use SoftDeletes;
     //
-    protected $table='roles';
+    protected $table = 'roles';
 
     protected $fillable = [
         'title',
@@ -17,18 +17,18 @@ class Role extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function permissions(){
-        return $this->belongsToMany(Permission::class,'permission_roles');
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'permission_roles');
     }
 
-    public function users(){
-        return $this->hasMany(User::class,'role_id','id');
+    public function users()
+    {
+        return $this->hasMany(User::class, 'role_id', 'id');
     }
 
     public function permission_roles()
     {
         return $this->hasMany(Permission_Roles::class, 'role_id', 'id');
     }
-
-
 }

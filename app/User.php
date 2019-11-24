@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'role_id','name', 'email', 'password', 'admin'
+        'role_id', 'name', 'email', 'password', 'admin'
     ];
 
     /**
@@ -53,11 +53,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Post', 'user_id', 'id');
     }
 
-    public function role(){
-        return $this->belongsTo(Role::class,'role_id','id');
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
-    public function hasPermission(Permission $permission){
-        return !! optional(optional($this->role)->permissions)->contains($permission);
+    public function hasPermission(Permission $permission)
+    {
+        return !!optional(optional($this->role)->permissions)->contains($permission);
     }
 }

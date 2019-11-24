@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="modalAddPermission" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="border-bottom: none;">
@@ -16,17 +16,18 @@
                                 <small>Add</small>
                             </h1>
                         </div>
-                        <br/>
+                        <br />
                         <div class="col-lg-12" style="font-size: 16px;">
                             {{--                            meta name="csrf-token"...  => phải có mới dùng đc ajax--}}
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                             <div class="form-group" style="">
                                 <label>Title</label>
-                                <input class="form-control" name="title" id="title" placeholder="Nhập permission title"/>
+                                <input class="form-control" name="title" id="title"
+                                    placeholder="Nhập permission title" />
                             </div>
                             <div class="form-group" style="">
                                 <label>Name</label>
-                                <input class="form-control" name="name" id="name" placeholder="Nhập permission"/>
+                                <input class="form-control" name="name" id="name" placeholder="Nhập permission" />
                             </div>
                             <div style="margin-top: 20px;">
                                 <p class="error_permission text-danger hidden"></p>
