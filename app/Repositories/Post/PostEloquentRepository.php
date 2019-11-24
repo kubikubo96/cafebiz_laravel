@@ -3,8 +3,9 @@
 namespace App\Repositories\Post;
 
 use App\Repositories\EloquentRepository;
+use App\Post;
 
-class PostEloquentRepository extends EloquentRepository implements PostRepositoryInterface
+class PostEloquentRepository extends EloquentRepository
 {
     /**
      * get model
@@ -12,29 +13,29 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
      */
     public function getModel()
     {
-        return \App\Post::class;
+        return Post::class;
     }
 
-    public function getAll(){
-        return \App\Post::with('comment','user')->get();
+    public function getAll()
+    {
+        return Post::with('comment', 'user')->get();
     }
 
     //xử lý postAdd bên PostController
     public function create_post($attributes)
     {
-        $data = array();
-        $data['user_id'] = $attributes->user_id;
-        $data['title'] = $attributes->title;
-        $data['title_link'] = $attributes->title_link;
-        $data['content_post'] = $attributes->content_post;
+        $data = $attributes->all();
+
         //hasFile : kiểm tra xem người dùng có truyền hình k. nếu k có thì để rỗng
         if ($attributes->hasFile('image')) {
             $file = $attributes->file('image');
             $endfile = $file->getClientOriginalExtension();
 
             if ($endfile != 'jpg' && $endfile != 'png' && $endfile != 'jpeg' && $endfile != 'JPG' && $endfile != 'PNG') {
-                return redirect('admin/posts/')->with('error_img',
-                    'Bạn chỉ được chọn file có đuôi jpg,png,jpeg :(');
+                return redirect('admin/posts/')->with(
+                    'error_img',
+                    'Bạn chỉ được chọn file có đuôi jpg,png,jpeg :('
+                );
             }
             $image = $file->getClientOriginalName();
 
@@ -43,11 +44,9 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
             $data['image'] = $image;
         } else {
             $data['image'] = "";
-
         }
-        $result = $this->create($data);
 
-        return $result;
+        return $this->create($data);
     }
 
     //xử lý openEditModal bên PostController
@@ -55,18 +54,14 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
     {
         $data = $attributes->all();
         $id = $data['id'];
-        $result = $this->find($id);
-        return $result;
+
+        return $this->find($id);
     }
 
     //xử lý postEdit bên PostController
     public function postEditRepo($attributes)
     {
-        $data = array();
-        $data['id'] = $attributes->id;
-        $data['title'] = $attributes->title;
-        $data['title_link'] = $attributes->title_link;
-        $data['content_post'] = $attributes->content_post;
+        $data = $attributes->all();
 
         //hasFile : kiểm tra xem người dùng có truyền hình k. nếu k có thì để rỗng
         if ($attributes->hasFile('image')) {
@@ -74,8 +69,10 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
             $endfile = $file->getClientOriginalExtension();
 
             if ($endfile != 'jpg' && $endfile != 'png' && $endfile != 'jpeg' && $endfile != 'JPG' && $endfile != 'PNG') {
-                return redirect('admin/posts/')->with('error_img',
-                    'Bạn chỉ được chọn file có đuôi jpg,png,jpeg :(');
+                return redirect('admin/posts/')->with(
+                    'error_img',
+                    'Bạn chỉ được chọn file có đuôi jpg,png,jpeg :('
+                );
             }
             $image = $file->getClientOriginalName();
 
@@ -84,26 +81,21 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
             $data['image'] = $image;
         }
 
-        $result = $this->update($data['id'], $data);
-
-        return $result;
+        return $this->update($data['id'], $data);
     }
 
     public function postPaginate()
     {
-        $post_paginate = \App\Post::paginate(3);
-        return $post_paginate;
+        return $this->paginate(3);
     }
 
     public function postHotNews()
     {
-        $hotnews = \App\Post::first();
-        return $hotnews;
+        return Post::first();
     }
 
-    public function postHotNews2(){
-        $hotnews2 = \App\Post::all()->skip(1)->take(3);
-        return $hotnews2;
+    public function postHotNews2()
+    {
+        return Post::all()->skip(1)->take(3);
     }
-
 }

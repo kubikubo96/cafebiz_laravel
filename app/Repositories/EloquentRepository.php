@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Repositories\RepositoryInterface;
-
 /**
  * Một lớp có thể kế thừa từ nhiều interface khác nhau bằng từ khóa implements
  */
@@ -64,7 +62,7 @@ abstract class EloquentRepository implements RepositoryInterface
      * @param array $attributes
      * @return mixed
      */
-    public function create($attributes)
+    public function create(array $attributes)
     {
 
         return $this->_model->create($attributes);

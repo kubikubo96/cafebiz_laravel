@@ -8,11 +8,6 @@ use App\User;
 
 class UserRepository extends EloquentRepository
 {
-    public function __construct(User $user,Role $role)
-    {
-        $this->user = $user;
-        $this->role = $role;
-    }
     /**
      * get model
      * @return string
@@ -24,7 +19,7 @@ class UserRepository extends EloquentRepository
 
     function getAll()
     {
-        return $this->user->with('comments', 'posts', 'role')
+        return User::with('comments', 'posts', 'role')
             ->where('id', '!=', '1')->get();
     }
 
@@ -39,7 +34,7 @@ class UserRepository extends EloquentRepository
             $data['admin'] = 0;
         }
 
-        return $this->user->create($data);
+        return $this->create($data);
     }
 
     //xử lý openEditModal bên UserController
@@ -48,26 +43,27 @@ class UserRepository extends EloquentRepository
         $data = $attributes->all();
         $id = $data['id'];
 
-        return $this->user->find($id);
+        return $this->find($id);
     }
 
     //xử lý userEdit bên UserController
     public function userEditRepo($attributes)
     {
         $data = array();
-        $data['id'] = $attributes->id;
+        $id = $attributes->id;
         $data['name'] = $attributes->name;
 
         if ($attributes->password != null) {
-            $attributes->password = bcrypt($attributes->password);
+            $data['password'] = bcrypt($attributes->password);
         }
 
-        return $this->user->update($data['id'], $data);
+
+        return $this->update($id, $data);
     }
 
     function getRolesForAddUser()
     {
-        return $this->role->with('permissions', 'users', 'permission_roles')
+        return Role::with('permissions', 'users', 'permission_roles')
             ->where('id', '!=', '1')->get();
     }
 }

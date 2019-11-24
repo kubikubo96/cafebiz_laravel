@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Post\PostRepositoryInterface;
+use App\Repositories\Post\PostEloquentRepository;
 use App\Http\Requests\Postrequests\PostAddRequest;
 use App\Http\Requests\Postrequests\PostEditRequest;
 
 class PostController extends Controller
 {
     /**3
-     * @var PostRepositoryInterface|\App\Repositories\RepositoryInterface
+     * @var PostEloquentRepository|\App\Repositories\RepositoryInterface
      * @var ...
      */
     protected $postRepository;
@@ -19,7 +19,7 @@ class PostController extends Controller
 
 
     public function __construct(
-        PostRepositoryInterface $postRepository,
+        PostEloquentRepository $postRepository,
         PostAddRequest $postAddRequest,
         PostEditRequest $postEditRequest
     ) {

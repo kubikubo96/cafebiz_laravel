@@ -7,10 +7,6 @@ use App\Role;
 
 class RoleRepository extends EloquentRepository
 {
-    public function __construct(Role $role)
-    {
-        $this->role = $role;
-    }
     /**
      * get model
      * @return string
@@ -22,8 +18,7 @@ class RoleRepository extends EloquentRepository
 
     public function getAll()
     {
-        $roles = $this->role->with('permissions', 'users', 'permission_roles')->get();
-        return $roles;
+        return Role::with('permissions', 'users', 'permission_roles')->get();
     }
 
     public  function addRole($attributes)
@@ -32,12 +27,12 @@ class RoleRepository extends EloquentRepository
 
         $data['title'] = $attributes->title;
 
-        return $this->role->create($data);
+        return $this->create($data);
     }
 
     //xử lý openEditModal bên RoleController
     public function openEditModal_role($attributes)
     {
-        return $this->role->find($attributes->id);
+        return $this->find($attributes->id);
     }
 }
