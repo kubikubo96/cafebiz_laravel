@@ -12,6 +12,7 @@ class UserRepository extends EloquentRepository
      * get model
      * @return string
      */
+
     public function getModel()
     {
         return User::class;
@@ -56,7 +57,6 @@ class UserRepository extends EloquentRepository
         if ($attributes->password != null) {
             $data['password'] = bcrypt($attributes->password);
         }
-
 
         return $this->update($id, $data);
     }
